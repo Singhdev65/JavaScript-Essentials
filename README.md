@@ -86,9 +86,46 @@ function outer() {
 <summary><b>Answer</b></summary>
 <p>
 
+#### Option: "bar"
+
+This JavaScript code defines two functions: outer and inner. When you run outer(), it calls inner(), logs "bar" to the console, and exits the outer function. The return statement doesn't affect the output. The final result is that "bar" is printed to the console when the script is executed.
+
+
+</p>
+</details>
+
+</li>
+
+---
+4. **What will be the output ?**
+
+```JS
+  if (true) {
+    function fn() {
+      console.log(1);
+    }
+  } else {
+    function fn() {
+      console.log(2);
+    }
+  }
+  fn();
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
 #### Option: 1
 
-Certainly! This JavaScript code defines two functions: outer and inner. When you run outer(), it calls inner(), logs "bar" to the console, and exits the outer function. The return statement doesn't affect the output. The final result is that "bar" is printed to the console when the script is executed.
+In this code snippet, there's a conditional block, but due to function hoisting, both branches define a function named fn. Regardless of the condition, the function defined inside the if block is the one that gets hoisted and is accessible outside the block. Consequently, when fn() is called outside the conditional block, it prints "1" to the console. The condition itself (if true or false) doesn't affect the output.
+
+
+
+
+
 
 
 </p>
