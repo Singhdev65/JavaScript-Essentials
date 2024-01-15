@@ -66,3 +66,37 @@ var fn; This declares a variable foo. However, since there's already a function 
 </li>
 
 ---
+
+3. **What will be the output ?**
+
+```JS
+function outer() {
+    inner();
+    return;
+    function inner() {
+      console.log("bar");
+    }
+  }
+  outer();```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### Option: 1
+
+Certainly! This JavaScript code defines two functions: outer and inner. When you run outer(), it calls inner(), logs "bar" to the console, and exits the outer function. The return statement doesn't affect the output. The final result is that "bar" is printed to the console when the script is executed.
+
+
+
+
+
+
+</p>
+</details>
+
+</li>
+
+---
