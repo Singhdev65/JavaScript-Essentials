@@ -77,7 +77,8 @@ function outer() {
       console.log("bar");
     }
   }
-  outer();```
+  outer();
+```
 
 <br/>
 
@@ -88,10 +89,6 @@ function outer() {
 #### Option: 1
 
 Certainly! This JavaScript code defines two functions: outer and inner. When you run outer(), it calls inner(), logs "bar" to the console, and exits the outer function. The return statement doesn't affect the output. The final result is that "bar" is printed to the console when the script is executed.
-
-
-
-
 
 
 </p>
