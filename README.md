@@ -1,5 +1,5 @@
 <div align="left">
-  <h1>Hoisting</h1>
+  <h1>output based preparation</h1>
 </div>
 
 1. **What will be the output ?**
