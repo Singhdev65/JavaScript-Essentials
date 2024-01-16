@@ -20,7 +20,7 @@ var fn = "reassign";
 <summary><b>Answer</b></summary>
 <p>
 
-#### `function`
+#### ➼➼➼: `function`
 
 1. console.log(typeof fn);: This line is executed first. At this point, foo is hoisted as a variable, but it has not been assigned a value yet, so its type is undefined.
 
@@ -54,7 +54,7 @@ console.log(typeof fn);
 <summary><b>Answer</b></summary>
 <p>
 
-#### `function`
+#### ➼➼➼: `function`
 
 function fn() { return "reassign"; }: This is a function declaration, and it creates a function named fn. Function declarations are hoisted to the top of their containing scope.
 
@@ -86,7 +86,7 @@ function outer() {
 <summary><b>Answer</b></summary>
 <p>
 
-#### "bar"
+#### ➼➼➼: "bar"
 
 This JavaScript code defines two functions: outer and inner. When you run outer(), it calls inner(), logs "bar" to the console, and exits the outer function. The return statement doesn't affect the output. The final result is that "bar" is printed to the console when the script is executed.
 
@@ -118,7 +118,7 @@ This JavaScript code defines two functions: outer and inner. When you run outer(
 <summary><b>Answer</b></summary>
 <p>
 
-#### 1
+#### ➼➼➼:1
 
 In this code snippet, there's a conditional block, but due to function hoisting, both branches define a function named fn. Regardless of the condition, the function defined inside the if block is the one that gets hoisted and is accessible outside the block. Consequently, when fn() is called outside the conditional block, it prints "1" to the console. The condition itself (if true or false) doesn't affect the output.
 
@@ -150,7 +150,7 @@ In this code snippet, there's a conditional block, but due to function hoisting,
 <summary><b>Answer</b></summary>
 <p>
 
-#### foo
+#### ➼➼➼: foo
 
 
 The code defines a function foo that takes a function x as a parameter. Inside foo, it immediately calls x(), and then declares a nested function x that logs "foo" to the console.
@@ -187,7 +187,7 @@ When foo is invoked with an anonymous function logging "bar," due to hoisting, t
 <summary><b>Answer</b></summary>
 <p>
 
-#### 3
+#### ➼➼➼: 3
 
 
 The given code will output:
