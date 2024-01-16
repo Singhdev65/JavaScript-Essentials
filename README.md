@@ -1,4 +1,4 @@
-<div align="left">
+<div align="center">
   <h1>JavaScript is ❤️❤️! Do it everyday 💯💯</h1>
 </div>
 
