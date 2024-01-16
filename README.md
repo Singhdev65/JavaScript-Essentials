@@ -1,5 +1,5 @@
 <div align="left">
-  <h1>output based preparation</h1>
+  <h1>JavaScript is ❤️❤️! Do it everyday 💯💯</h1>
 </div>
 
 1. **What will be the output ?**
