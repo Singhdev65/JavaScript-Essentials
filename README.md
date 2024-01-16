@@ -122,10 +122,113 @@ This JavaScript code defines two functions: outer and inner. When you run outer(
 
 In this code snippet, there's a conditional block, but due to function hoisting, both branches define a function named fn. Regardless of the condition, the function defined inside the if block is the one that gets hoisted and is accessible outside the block. Consequently, when fn() is called outside the conditional block, it prints "1" to the console. The condition itself (if true or false) doesn't affect the output.
 
+</p>
+</details>
+
+</li>
+
+---
+5. **What will be the output ?**
+
+```JS
+  function foo(x) {
+    x();
+    function x() {
+      console.log("foo");
+    }
+  }
+
+  foo(function () {
+    console.log("bar");
+  });
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### Option: foo
 
 
+The code defines a function foo that takes a function x as a parameter. Inside foo, it immediately calls x(), and then declares a nested function x that logs "foo" to the console.
+
+When foo is invoked with an anonymous function logging "bar," due to hoisting, the nested x inside foo is called first, logging "foo," and then the anonymous function is invoked, logging "bar."
 
 
+</p>
+</details>
+
+</li>
+
+---
+
+6. **What will be the output ?**
+
+```JS
+  foo();
+  function foo() {
+    console.log(1);
+  }
+  var foo = function () {
+    console.log(2);
+  };
+  function foo() {
+    console.log(3);
+  }
+  foo();
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### Option: 3
+
+
+The given code will output:
+
+Copy code
+3
+Here's the explanation:
+
+Function declarations are hoisted to the top during the compilation phase. So, when the code is executed:
+
+```JS
+function foo() {
+  console.log(1);
+}
+```
+The first function declaration function foo() is hoisted to the top, and it logs 1 to the console.
+
+Next, there is a variable declaration using var:
+
+```JS
+var foo = function () {
+  console.log(2);
+};
+```
+This declaration is also hoisted to the top, but it doesn't override the previous function declaration. At this point, foo still refers to the function declared in step 1.
+
+Another function declaration follows:
+
+```JS
+function foo() {
+  console.log(3);
+}
+```
+Again, this function declaration is hoisted to the top. It overrides the previous function declaration and sets foo to the new function that logs 3 to the console.
+
+When foo() is called:
+
+```JS
+foo();
+```
+It executes the latest function assigned to foo, which logs 3 to the console.
 
 
 </p>
