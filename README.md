@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>JavaScript is ❤️❤️! Do it everyday 💯💯</h1>
+  <h1>```JS is ❤️❤️! Do it everyday 💯💯</h1>
 </div>
 
 1. **What will be the output ?**
@@ -88,7 +88,7 @@ function outer() {
 
 #### ➼➼➼: "bar"
 
-This JavaScript code defines two functions: outer and inner. When you run outer(), it calls inner(), logs "bar" to the console, and exits the outer function. The return statement doesn't affect the output. The final result is that "bar" is printed to the console when the script is executed.
+This ```JS code defines two functions: outer and inner. When you run outer(), it calls inner(), logs "bar" to the console, and exits the outer function. The return statement doesn't affect the output. The final result is that "bar" is printed to the console when the script is executed.
 
 
 </p>
@@ -192,7 +192,7 @@ When foo is invoked with an anonymous function logging "bar," due to hoisting, t
 
 The given code will output:
 
-Copy code
+
 3
 Here's the explanation:
 
@@ -237,3 +237,135 @@ It executes the latest function assigned to foo, which logs 3 to the console.
 </li>
 
 ---
+7. **What will be the output ?**
+
+```JS
+   function animal() {
+    console.log("Cat");
+  }
+  var otherAnimal;
+  animal();
+  otherAnimal();
+  otherAnimal = function () {
+    console.log("Dog");
+  };
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: error
+
+```JS
+function animal() {
+    console.log("Cat");
+}
+
+var otherAnimal; // Variable declaration (undefined)
+
+animal(); // Function invocation - Outputs: Cat
+
+otherAnimal(); // Error: otherAnimal is not a function
+
+otherAnimal = function () {
+    console.log("Dog");
+};
+```
+
+In this code, an attempt to invoke otherAnimal before its initialization as a function will result in an error. The error occurs because otherAnimal is assigned a function expression after the attempted invocation.
+
+
+
+
+
+</p>
+</details>
+
+</li>
+
+---
+
+
+7. **What will be the output ?**
+
+```JS
+   function animal() {
+    console.log("Cat");
+  }
+  var otherAnimal;
+  animal();
+  otherAnimal();
+  otherAnimal = function () {
+    console.log("Dog");
+  };
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: error
+
+Function Expression Assignment:
+
+```JS
+
+b = function a() {};
+
+```
+Declares a function expression a and assigns it to the variable b.
+
+Variable Declaration and Assignment:
+
+```JS
+
+var a = (b = 6);
+```
+Assigns the value 6 to b and assigns the result (which is 6) to a.
+
+Function Expression Assignment:
+
+```JS
+
+a = function b() {};
+```
+Declares a function expression b and assigns it to a.
+
+Function Declarations (hoisted):
+
+```JS
+
+function b() {}
+function a() {}
+```
+Hoisted function declarations for b and a.
+
+Logging the Variables:
+
+```JS
+
+console.log(a, b);
+```
+Outputs the values, resulting in:
+
+```JS
+
+function b() 6
+```
+In summary, the code involves variable reassignments, function expressions, and hoisted function declarations. The console.log statement shows the final values of a (function expression) and b (assigned number).
+
+</p>
+</details>
+
+</li>
+
+---
+
+
