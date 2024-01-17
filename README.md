@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>```JS is ❤️❤️! Do it everyday 💯💯</h1>
+  <h1>JS is ❤️❤️! Do it everyday 💯💯</h1>
 </div>
 
 1. **What will be the output ?**
