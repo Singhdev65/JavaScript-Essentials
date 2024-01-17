@@ -290,7 +290,7 @@ In this code, an attempt to invoke otherAnimal before its initialization as a fu
 ---
 
 
-7. **What will be the output ?**
+8. **What will be the output ?**
 
 ```JS
    function animal() {
