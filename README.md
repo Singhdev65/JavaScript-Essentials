@@ -311,7 +311,8 @@ In this code, an attempt to invoke otherAnimal before its initialization as a fu
 <summary><b>Answer</b></summary>
 <p>
 
-#### ➼➼➼: error
+#### ➼➼➼: ƒ b() {} 6
+
 
 Function Expression Assignment:
 
