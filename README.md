@@ -190,10 +190,7 @@ When foo is invoked with an anonymous function logging "bar," due to hoisting, t
 #### ➼➼➼: 3
 
 
-The given code will output:
-
-
-3
+The given code will output: 3
 Here's the explanation:
 
 Function declarations are hoisted to the top during the compilation phase. So, when the code is executed:
@@ -370,3 +367,124 @@ In summary, the code involves variable reassignments, function expressions, and 
 ---
 
 
+9. **What will be the output ?**
+
+```JS
+  var a = 10;
+console.log("line number 2", a);
+function fn() {
+  console.log("line number 4", a);
+  var a = 20;
+  a++;
+  console.log("line number 7", a);
+  if (a) {
+    var a = 30;
+    a++;
+    console.log("line number 11", a);
+  }
+  console.log("line number 13", a);
+}
+fn();
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼:
+line number 4 undefined
+line number 7 21
+line number 11 31
+line number 13 31
+
+Certainly! Let's break down the code step by step and see what gets printed to the console:
+
+```JS
+
+var a = 10;
+console.log("line number 2", a);
+Output: line number 2 10
+```
+
+Here, a variable a is declared and assigned the value 10. The value of a is then logged to the console.
+
+```JS
+
+function fn() {
+  console.log("line number 4", a);
+  var a = 20;
+  a++;
+  console.log("line number 7", a);
+  if (a) {
+    var a = 30;
+    a++;
+    console.log("line number 11", a);
+  }
+  console.log("line number 13", a);
+}
+fn();
+```
+Output:
+
+```JS
+
+line number 4 undefined
+line number 7 21
+line number 11 31
+line number 13 31
+```
+Inside the function fn, a new variable a is declared and assigned the value 20, but the logging of the variable at "line number 4" prints undefined because there is a variable shadowing effect. The inner variable a is hoisted to the top of the function, so at the point of logging, it exists but hasn't been assigned a value yet.
+
+The value of a is then incremented and logged at "line number 7". Inside the if statement, a new variable a is declared and assigned the value 30, incremented, and logged at "line number 11". After exiting the if statement, the value of a is logged again at "line number 13".
+
+So, the final output shows the values of a at different points inside the function. The variable a inside the function does affect the outer a due to the hoisting and variable shadowing.
+
+
+</p>
+</details>
+
+</li>
+
+---
+
+10. **What will be the output ?**
+
+```JS
+function foo() {
+  let a = (b = 0);
+  a++;
+  return a;
+}
+foo();
+console.log(typeof a);
+console.log(typeof b);
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼:undefined,number
+
+Inside the function foo, there is a variable a declared using let, and it is assigned the value (b = 0). Here, the expression (b = 0) assigns 0 to both variable b and variable a. The parentheses are used to avoid any potential issues with the assignment.
+
+a is then incremented by 1 with a++, and the function returns the updated value of a.
+
+When the function foo is invoked with foo();, it doesn't explicitly use the returned value, so the result (the incremented value of a) is not logged or stored anywhere.
+
+After the function call, there are two console.log statements:
+
+console.log(typeof a);: This attempts to log the type of the variable a outside the function. However, since a is declared with let inside the function, it has block scope and is not accessible outside the function. As a result, this line will throw an error, and the script execution may stop at this point.
+console.log(typeof b);: This attempts to log the type of the variable b outside the function. Surprisingly, b is not declared with let or var inside the function, making it implicitly a global variable. As a result, this line will log the type of b, which is number.
+In summary, the code will likely throw an error at the first console.log statement (typeof a) due to the block-scoping of a. The second console.log statement (typeof b) will log number, as b becomes a global variable due to the absence of a declaration keyword (let, var, or const) inside the function.
+</p>
+</details>
+
+</li>
+
+---
