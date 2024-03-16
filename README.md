@@ -665,3 +665,163 @@ The setTimeout function is called inside of a loop that iterates through the ele
 </li>
 
 ---
+
+16. **What will be the output ?**
+
+```JS
+const arr = [1, 2, 3, 4, 5];
+
+arr.forEach(function (element) {
+  console.log(element);
+});
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 1, 2, 3, 4, 5
+
+The forEach method is called on the arr array and a callback function is passed as an argument. The callback function will be executed for each element in the array, with the element passed as an argument to the callback. As a result, the output will be the elements of the array, 1, 2, 3, 4, and 5, printed on separate lines.
+
+</p>
+</details>
+
+</li>
+
+---
+
+17. **What will be the output ?**
+
+```JS
+let x = 1;
+
+if (function f() {}) {
+  x += typeof f;
+}
+
+console.log(x);
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 1undefined
+
+The if statement is evaluating the function f as a boolean value. In JavaScript, functions are truthy values, so the condition will evaluate to true and the code block inside the if statement will be executed. The value of x is then incremented by the string "undefined", which is the result of calling typeof f.
+
+</p>
+</details>
+
+</li>
+
+---
+
+18. **What will be the output ?**
+
+```JS
+let a = {
+  x: 1,
+  y: 2,
+};
+let b = a;
+a.x = 5;
+console.log(a);
+console.log(b);
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: {x:5, y:2} {x:5, y:2}
+
+JavaScript objects are passed by reference. So when we assigned a object to b. b also pointing to the same object in memory. When we change the value of a.x it also affects b.x
+
+</p>
+</details>
+
+</li>
+
+---
+
+19. **What will be the output ?**
+
+```JS
+let x = [1, 2, 3];
+let y = [1, 2, 3];
+let z = y;
+
+console.log(x == y);
+console.log(x === y);
+console.log(z == y);
+console.log(z == x);
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: false false true false
+
+When comparing two objects with the == operator, it compares their references, not their values. In this case, x and y are different objects with the same values. z is assigned the value of y, so they refer to the same object. As a result, the first comparison returns false, the second comparison also returns false and the third comparison returns true. and the last comparison also returns false.
+
+</p>
+</details>
+
+</li>
+
+---
+
+20. **What will be the output ?**
+
+```JS
+var x = 0;
+for (let i = 0; i < 5; i++) {
+  setTimeout(() => {
+    x++;
+    console.log(x);
+  }, 1000);
+}
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 1 2 3 4 5
+
+The for loop is iterating 5 times, and in each iteration, it is scheduling a function to be invoked after 1000 milliseconds (1 second) using setTimeout. This function increments the value of x and logs it.
+
+But all the 5 functions invoked after 1000 milliseconds.
+
+Since, javascript is single threaded and event loop queue all the functions in the event loop and execute them one by one.
+
+But inside each setTimeout callback execution, x++ increments x value by 1.
+
+It makes difference when position of x++ code changes wrt the setTimout callback.
+
+So all the 5 callbacks logs the values in incremental way, which is 1 2 3 4 5.s
+
+</p>
+</details>
+
+</li>
+
+---
