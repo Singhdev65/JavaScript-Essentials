@@ -825,3 +825,183 @@ So all the 5 callbacks logs the values in incremental way, which is 1 2 3 4 5.s
 </li>
 
 ---
+
+21. **What will be the output ?**
+
+```JS
+let a = { x: 1 };
+let b = { x: 2 };
+let c = { x: 3 };
+let d = { x: 4 };
+let e = { x: 5 };
+let arr = [a, b, c, d, e];
+
+arr.forEach((obj) => (obj.x = obj.x * 2));
+
+console.log(a.x, b.x, c.x, d.x, e.x);
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 2 4 6 8 10
+
+The code is using the forEach method to iterate over an array of objects, and it is modifying the x property of each object by multiplying it by 2.
+
+It's updating the original objects with x*2 values.
+
+So, the output of the code is 2 4 6 8 10.
+
+</p>
+</details>
+
+</li>
+
+---
+
+22. **What will be the output ?**
+
+```JS
+let num = 0;
+
+function test() {
+  var num = 1;
+  return num;
+}
+
+console.log(test());
+console.log(num);
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 1 0
+
+The code defines a global variable num with the value of 0 and then a function test which declares a local variable num with the value of 1 and returns it.
+
+When test() is called, it first declares a local variable num with the value of 1.
+
+Then the function return statement logs 1 on the console.
+
+After that, it logs the value of global variable num which is 0.
+
+Because the global and local variables have different scope and different memory allocation.
+
+</p>
+</details>
+
+</li>
+
+---
+
+23. **What will be the output ?**
+
+```JS
+let obj = { name: "John", age: 25 };
+let newObj = { ...obj, age: 30 };
+
+console.log(obj.age);
+console.log(newObj.age);
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 25 30
+
+The code creates an object obj with properties name and age. Then it creates a new object newObj using the spread operator to copy the properties of obj and then it updates the age property to 30.
+
+The spread operator ... creates a new object with properties copied from the original object.
+
+So, the first console.log statement logs the value of age property of obj which is 25.
+
+And, the second console.log statement logs the value of age property of newObj which is 30.
+
+It doesn't affect the original object obj.
+
+</p>
+</details>
+
+</li>
+
+---
+
+24. **What will be the output ?**
+
+```JS
+const add = (a = 1, b = 2) => a + b;
+console.log(add());
+console.log(add(5));
+console.log(add(undefined, 10));
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 3 7 11
+
+The code defines a function add which takes two parameters a and b and returns the sum of both. It uses default parameters to assign default values 1 to a and 2 to b if they are not provided.
+
+So, the first console.log statement logs the result of add() which is 1 + 2 = 3 as both the parameters are not provided and default values are used.
+
+The second console.log statement logs the result of add(5) which is 5 + 2 = 7 as only the first parameter is provided and the default value of b is used.
+
+The third console.log statement logs the result of add(undefined, 10) which is 1 + 10 = 11 as the first parameter is provided as undefined and it takes the default value 1 and the second parameter is provided as 10.
+
+</p>
+</details>
+
+</li>
+
+---
+
+25. **What will be the output ?**
+
+```JS
+const name = "John";
+const age = 25;
+
+const user = { name, age };
+console.log(user);
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: { name: "John", age: 25 }
+
+The code defines two variables name and age with values "John" and 25 respectively.
+
+Then, it uses object literal notation to create an object user with properties name and age and the values are assigned from the variables name and age respectively.
+
+So, the console.log statement logs the user object which is { name: "John", age: 25 }.
+
+In ES6+, you can use object literal notation to create objects with properties using the same name as the variables with the values assigned to them.
+
+</p>
+</details>
+
+</li>
+
+---
