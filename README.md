@@ -1342,13 +1342,13 @@ console.log(typeof function () {});
 
 The typeof operator in JavaScript is used to determine the type of a value or expression. Here's the breakdown of the output:
 
-typeof 42 returns "number" because 42 is a numeric value.
-typeof "Hello" returns "string" because "Hello" is a string.
-typeof true returns "boolean" because true is a boolean value.
-typeof [1, 2, 3] returns "object" because arrays are considered objects in JavaScript.
-typeof { name: "John", age: 25 } returns "object" because objects are considered objects in JavaScript.
-typeof null returns "object", which is a known quirk in JavaScript. null is considered an object type.
-typeof undefined returns "undefined" because it is a special value in JavaScript representing an uninitialized variable.
+typeof 42 returns "number" because 42 is a numeric value.<br>
+typeof "Hello" returns "string" because "Hello" is a string.<br>
+typeof true returns "boolean" because true is a boolean value.<br>
+typeof [1, 2, 3] returns "object" because arrays are considered objects in JavaScript.<br>
+typeof { name: "John", age: 25 } returns "object" because objects are considered objects in JavaScript.<br>
+typeof null returns "object", which is a known quirk in JavaScript. null is considered an object type.<br>
+typeof undefined returns "undefined" because it is a special value in JavaScript representing an uninitialized variable.<br>
 typeof function() {} returns "function" because it is a function object.
 
 </p>
