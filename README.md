@@ -1005,3 +1005,355 @@ In ES6+, you can use object literal notation to create objects with properties u
 </li>
 
 ---
+
+26. **What will be the output ?**
+
+```JS
+const arr = [1, 2, 3];
+const [a, b, c] = arr;
+
+console.log(a);
+console.log(b);
+console.log(c);
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 1 2 3
+
+The code defines an array arr with values [1, 2, 3].
+
+Then, it uses destructuring assignment to extract the values from the array arr and assign them to variables a, b, and c respectively.
+
+So, the first console.log statement logs the value of a which is 1.
+
+The second console.log statement logs the value of b which is 2.
+
+The third console.log statement logs the value of c which is 3.
+
+In ES6+, you can use destructuring assignment to extract values from arrays and objects and assign them to variables in a concise way.
+
+</p>
+</details>
+
+</li>
+
+---
+
+27. **What will be the output ?**
+
+```JS
+console.log(typeof null);
+console.log(typeof undefined);
+console.log(null === undefined);
+console.log(null == undefined);
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: object undefined false true
+
+typeof null returns object which is an error in JavaScript. This is a historical bug in the language that cannot be fixed without breaking existing code. So, to check for null, you should use === null instead of typeof operator.
+
+typeof undefined returns undefined.
+
+null === undefined is false because null and undefined are two distinct types in JavaScript.
+
+null == undefined is true because == is the loose equality operator in JavaScript, which performs type coercion before comparison. In this case, both null and undefined are coerced to undefined before comparison, and since they both have the same value, the comparison returns true. However, it is generally recommended to use === instead of == to avoid unexpected behavior due to type coercion.
+
+</p>
+</details>
+
+</li>
+
+---
+
+28. **What will be the output ?**
+
+```JS
+let x = 5;
+{
+  let x = 10;
+  console.log(x);
+}
+console.log(x);
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 10 5
+
+This is because of the block scoping behavior of the let keyword in ES6.
+
+When we declare a variable with let inside a block (in this case, the block is defined by the curly braces), the variable is only accessible inside that block and its sub-blocks.
+
+In the code above, we define a variable x outside the block with the value of 5. Then we define another variable x inside the block with the value of 10.
+
+The first console.log() statement inside the block will print 10, because x refers to the variable defined inside the block. The second console.log() statement outside the block will print 5, because it refers to the variable defined outside the block.
+
+</p>
+</details>
+
+</li>
+
+---
+
+29. **What will be the output ?**
+
+```JS
+const obj = { a: 1, b: 2, c: 3 };
+const { a, b } = obj;
+console.log(a, b);
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 1 2 
+
+This is because of the object destructuring syntax introduced in ES6.
+
+We declare a constant variable obj with an object containing three properties. Then we use object destructuring to extract the properties a and b from the object and assign them to separate variables with the same names.
+
+The console.log() statement then prints the values of the a and b variables, which are 1 and 2 respectively.
+
+</p>
+</details>
+
+</li>
+
+---
+
+30. **What will be the output ?**
+
+```JS
+const arr1 = [1, 2, 3];
+const arr2 = [4, 5, 6];
+const arr3 = [...arr1, ...arr2];
+console.log(arr3);
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: [1, 2, 3, 4, 5, 6]
+
+This is because of the spread syntax (...) introduced in ES6.
+
+The ... operator can be used to spread the elements of an array or the properties of an object into a new array or object.
+
+In the code above, we define two arrays arr1 and arr2. Then we create a new array arr3 by spreading the elements of arr1 and arr2 into it using the spread syntax.
+
+The console.log() statement then prints the contents of arr3, which are the elements of arr1 followed by the elements of arr2.
+
+</p>
+</details>
+
+</li>
+
+---
+
+31. **What will be the output ?**
+
+```JS
+const arr1 = [1, 2, 3];
+const arr2 = [...arr1];
+
+arr2.push(4);
+
+console.log(arr1);
+console.log(arr2);
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: [1, 2, 3] [1, 2, 3, 4]
+
+The code creates an array arr1 with the values [1, 2, 3]. It then creates a new array arr2 using the spread syntax (...) to spread the values of arr1 into a new array.
+
+arr2.push(4) adds the value 4 to the end of arr2.
+
+However, arr1 remains unchanged because arr2 is a new array with its own reference to the values of arr1. This is known as creating a shallow copy of the array.
+
+Therefore, the first console.log(arr1) prints [1, 2, 3] and the second console.log(arr2) prints [1, 2, 3, 4].
+
+</p>
+</details>
+
+</li>
+
+---
+
+32. **What will be the output ?**
+
+```JS
+const x = 10;
+
+function foo() {
+  console.log(x);
+  const x = 20;
+}
+
+foo();
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: ReferenceError: Cannot access 'x' before initialization
+
+The foo function attempts to log the value of x before it is initialized. This causes a ReferenceError to be thrown, as x is not yet defined in the function scope.
+
+This happens because of variable hoisting in JavaScript. When a variable is declared with const or let, it is not hoisted to the top of the scope like variables declared with var are. Instead, they are only accessible after they are declared.
+
+Therefore, when console.log(x) is called in the foo function, the local variable x has not yet been initialized, resulting in a ReferenceError.
+
+</p>
+</details>
+
+</li>
+
+---
+
+33. **What will be the output ?**
+
+```JS
+const a = [1, 2, 3];
+const b = a;
+
+b.push(4);
+
+console.log(a);
+console.log(b);
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: [1, 2, 3, 4] [1, 2, 3, 4]
+
+The code creates an array a with the values [1, 2, 3]. It then creates a new variable b and assigns it to a, creating a reference to the same array.
+
+b.push(4) adds the value 4 to the end of the array.
+
+Since a and b reference the same array, both console.log(a) and console.log(b) will print [1, 2, 3, 4].
+
+This is different from the previous example where ... spread operator was used, which created a new array with the same values as the original array instead of referencing the same array.
+
+</p>
+</details>
+
+</li>
+
+---
+
+34. **What will be the output ?**
+
+```JS
+const companies = [
+  { id: "1", name: "Facebook" },
+  { id: "2", name: "Apple" },
+  { id: "3", name: "Google" },
+];
+
+companies.sort((a, b) => (a.name > b.name ? -1 : 1));
+console.log(companies);
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: [{id: "3", name:"Google"}, {id: "1", name:"Facebook"},{id: "2", name:"Apple"}]
+
+The comparison function takes two parameters, "a" and "b", which represent two elements being compared in the array.
+
+If the "name" property of "a" comes before the "name" property of "b" in alphabetical order, then the function returns -1, which means "a" should come before "b" in the sorted array.
+
+Otherwise, if the "name" property of "a" comes after the "name" property of "b" in alphabetical order, then the function returns 1, which means "b" should come before "a" in the sorted array.
+
+</p>
+</details>
+
+</li>
+
+---
+
+35. **What will be the output ?**
+
+```JS
+console.log(typeof 42);
+console.log(typeof "Hello");
+console.log(typeof true);
+console.log(typeof [1, 2, 3]);
+console.log(typeof { name: "John", age: 25 });
+console.log(typeof null);
+console.log(typeof undefined);
+console.log(typeof function () {});
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: bash Copy code number string boolean object object object undefined function
+
+The typeof operator in JavaScript is used to determine the type of a value or expression. Here's the breakdown of the output:
+
+typeof 42 returns "number" because 42 is a numeric value.
+typeof "Hello" returns "string" because "Hello" is a string.
+typeof true returns "boolean" because true is a boolean value.
+typeof [1, 2, 3] returns "object" because arrays are considered objects in JavaScript.
+typeof { name: "John", age: 25 } returns "object" because objects are considered objects in JavaScript.
+typeof null returns "object", which is a known quirk in JavaScript. null is considered an object type.
+typeof undefined returns "undefined" because it is a special value in JavaScript representing an uninitialized variable.
+typeof function() {} returns "function" because it is a function object.
+
+</p>
+</details>
+
+</li>
+
+---
