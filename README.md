@@ -1573,11 +1573,3 @@ Hence, the correct answer is undefined.
 </li>
 
 ---
-****
-
-</p>
-</details>
-
-</li>
-
----
