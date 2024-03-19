@@ -1357,3 +1357,435 @@ typeof function() {} returns "function" because it is a function object.
 </li>
 
 ---
+
+36. **What will be the output ?**
+
+```JS
+function calculateSum() {
+  console.log(result);
+  var num1 = 5;
+  let num2 = 10;
+  const num3 = 15;
+  var result = num1 + num2 + num3;
+}
+
+calculateSum();
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: undefined
+
+In the code, the variable result is declared using the var keyword, but it is assigned a value after the console.log statement.
+
+When JavaScript executes the function calculateSum(), it hoists the variable declaration of result to the top of the function scope. However, since the assignment of the value num1 + num2 + num3 comes after the console.log statement, the variable is undefined at the point of the console.log.
+
+So, the code is effectively interpreted like this:
+
+```JS
+function calculateSum() {
+  var result; // Variable declaration is hoisted to the top
+
+  console.log(result); // undefined
+
+  var num1 = 5;
+  let num2 = 10;
+  const num3 = 15;
+  result = num1 + num2 + num3; // Assignment is performed here
+}
+
+calculateSum();
+```
+
+Since the variable result is hoisted, it exists in the function scope but does not have any assigned value until after the console.log statement. Therefore, when console.log(result) is executed, the variable result exists but is undefined.
+
+</p>
+</details>
+
+</li>
+
+---
+
+37. **What will be the output ?**
+
+```JS
+let x = 10;
+
+function updateX() {
+  if (true) {
+    let x = 20;
+    console.log(x);
+  }
+  console.log(x);
+}
+
+updateX();
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 20, 10
+
+In this code, the variable x is declared and assigned a value of 10 outside the updateX function.
+
+Inside the function, a new block is created using an if statement. Within that block, a new variable x is declared and assigned a value of 20 using let. This creates a separate scope for the inner x, which is only accessible within the if block.
+
+When the console.log statements are executed, the first one inside the if block will output 20, as it refers to the inner x variable. The second console.log statement outside the if block will output 10, as it refers to the outer x variable.
+
+Therefore, the output will be 20, 10.
+
+</p>
+</details>
+
+</li>
+
+---
+
+38. **What will be the output ?**
+
+```JS
+const person = {
+  name: "John",
+  age: 30,
+};
+
+Object.freeze(person);
+person.age = 40;
+
+console.log(person.age);
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 30
+
+In this code, the Object.freeze() method is used to make
+
+the person object immutable. This means that the properties of the object cannot be modified.
+
+When attempting to assign a new value to person.age after freezing the object, it does not throw an error or modify the object. Instead, it silently fails in non-strict mode and throws a TypeError in strict mode.
+
+Since the code is not running in strict mode, the assignment person.age = 40 does not have any effect. Therefore, when console.log(person.age) is executed, it will output the original value of 30.
+
+Hence, the output will be 30.
+
+</p>
+</details>
+
+</li>
+
+---
+
+39. **What will be the output ?**
+
+```JS
+function foo() {
+  let x = 1;
+
+  function bar() {
+    let y = 2;
+    console.log(x + y);
+  }
+
+  bar();
+}
+
+foo();
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 3
+
+In this code, there are two nested functions: foo and bar. The variable x is declared and assigned a value of 1 within the foo function, while the variable y is declared and assigned a value of 2 within the bar function.
+
+When the foo function is called, it invokes the bar function. Inside the bar function, the values of x and y are accessed and summed together using console.log(x + y).
+
+Since x is accessible within the bar function due to lexical scoping, the value of x is 1. Similarly, the value of y is 2. Therefore, the output of console.log(x + y) will be 3.
+
+Hence, the correct answer is 3.
+
+</p>
+</details>
+
+</li>
+
+---
+
+40. **What will be the output ?**
+
+```JS
+let x = 10;
+
+function outer() {
+  console.log(x);
+
+  if (false) {
+    var x = 20;
+  }
+}
+
+outer();
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: undefined
+
+In this code snippet, there's a variable hoisting issue with the var declaration inside the outer function. The variable x is declared using var within the outer function scope.
+
+When the function outer() is called, the console.log(x) statement is executed. At this point, the variable x is hoisted to the top of the function scope and is initialized with undefined. This means that the local variable x inside the function is different from the global x.
+
+The if (false) block will not be executed, so the assignment var x = 20; will not take place.
+
+Thus, the console.log(x) statement inside the outer function will log the value of the locally hoisted variable x, which is undefined.
+
+Hence, the correct answer is undefined.
+
+</p>
+</details>
+
+</li>
+
+---
+****
+36. **What will be the output ?**
+
+```JS
+function calculateSum() {
+  console.log(result);
+  var num1 = 5;
+  let num2 = 10;
+  const num3 = 15;
+  var result = num1 + num2 + num3;
+}
+
+calculateSum();
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: undefined
+
+In the code, the variable result is declared using the var keyword, but it is assigned a value after the console.log statement.
+
+When JavaScript executes the function calculateSum(), it hoists the variable declaration of result to the top of the function scope. However, since the assignment of the value num1 + num2 + num3 comes after the console.log statement, the variable is undefined at the point of the console.log.
+
+So, the code is effectively interpreted like this:
+
+```JS
+function calculateSum() {
+  var result; // Variable declaration is hoisted to the top
+
+  console.log(result); // undefined
+
+  var num1 = 5;
+  let num2 = 10;
+  const num3 = 15;
+  result = num1 + num2 + num3; // Assignment is performed here
+}
+
+calculateSum();
+```
+
+Since the variable result is hoisted, it exists in the function scope but does not have any assigned value until after the console.log statement. Therefore, when console.log(result) is executed, the variable result exists but is undefined.
+
+</p>
+</details>
+
+</li>
+
+---
+
+37. **What will be the output ?**
+
+```JS
+let x = 10;
+
+function updateX() {
+  if (true) {
+    let x = 20;
+    console.log(x);
+  }
+  console.log(x);
+}
+
+updateX();
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 20, 10
+
+In this code, the variable x is declared and assigned a value of 10 outside the updateX function.
+
+Inside the function, a new block is created using an if statement. Within that block, a new variable x is declared and assigned a value of 20 using let. This creates a separate scope for the inner x, which is only accessible within the if block.
+
+When the console.log statements are executed, the first one inside the if block will output 20, as it refers to the inner x variable. The second console.log statement outside the if block will output 10, as it refers to the outer x variable.
+
+Therefore, the output will be 20, 10.
+
+</p>
+</details>
+
+</li>
+
+---
+
+38. **What will be the output ?**
+
+```JS
+const person = {
+  name: "John",
+  age: 30,
+};
+
+Object.freeze(person);
+person.age = 40;
+
+console.log(person.age);
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 30
+
+In this code, the Object.freeze() method is used to make
+
+the person object immutable. This means that the properties of the object cannot be modified.
+
+When attempting to assign a new value to person.age after freezing the object, it does not throw an error or modify the object. Instead, it silently fails in non-strict mode and throws a TypeError in strict mode.
+
+Since the code is not running in strict mode, the assignment person.age = 40 does not have any effect. Therefore, when console.log(person.age) is executed, it will output the original value of 30.
+
+Hence, the output will be 30.
+
+</p>
+</details>
+
+</li>
+
+---
+
+39. **What will be the output ?**
+
+```JS
+function foo() {
+  let x = 1;
+
+  function bar() {
+    let y = 2;
+    console.log(x + y);
+  }
+
+  bar();
+}
+
+foo();
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 3
+
+In this code, there are two nested functions: foo and bar. The variable x is declared and assigned a value of 1 within the foo function, while the variable y is declared and assigned a value of 2 within the bar function.
+
+When the foo function is called, it invokes the bar function. Inside the bar function, the values of x and y are accessed and summed together using console.log(x + y).
+
+Since x is accessible within the bar function due to lexical scoping, the value of x is 1. Similarly, the value of y is 2. Therefore, the output of console.log(x + y) will be 3.
+
+Hence, the correct answer is 3.
+
+</p>
+</details>
+
+</li>
+
+---
+
+40. **What will be the output ?**
+
+```JS
+let x = 10;
+
+function outer() {
+  console.log(x);
+
+  if (false) {
+    var x = 20;
+  }
+}
+
+outer();
+
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: undefined
+
+In this code snippet, there's a variable hoisting issue with the var declaration inside the outer function. The variable x is declared using var within the outer function scope.
+
+When the function outer() is called, the console.log(x) statement is executed. At this point, the variable x is hoisted to the top of the function scope and is initialized with undefined. This means that the local variable x inside the function is different from the global x.
+
+The if (false) block will not be executed, so the assignment var x = 20; will not take place.
+
+Thus, the console.log(x) statement inside the outer function will log the value of the locally hoisted variable x, which is undefined.
+
+Hence, the correct answer is undefined.
+
+</p>
+</details>
+
+</li>
+
+---
