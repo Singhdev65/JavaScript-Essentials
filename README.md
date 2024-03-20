@@ -1573,3 +1573,259 @@ Hence, the correct answer is undefined.
 </li>
 
 ---
+
+41. **What will be the output ?**
+
+```JS
+const obj = {
+  a: 1,
+  b: 2,
+  c: {
+    a: 3,
+    b: 4,
+  },
+};
+
+const {
+  a,
+  b,
+  c: { a: nestedA },
+} = obj;
+
+console.log(a, b, nestedA);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 1 2 3
+
+This code snippet uses destructuring assignment to extract values from the obj object. It extracts the properties a, b, and the nested property a from the c object and assigns them to the corresponding variables a, b, and nestedA, respectively.
+
+After destructuring, the variables will hold the following values:
+
+a: 1 (value of obj.a)
+b: 2 (value of obj.b)
+nestedA: 3 (value of obj.c.a)
+When console.log(a, b, nestedA) is executed, it will print 1 2 3, as the values of the variables match the above assignments.
+
+Hence, the correct answer is 1 2 3.
+
+</p>
+</details>
+
+</li>
+
+---
+
+42. **What will be the output ?**
+
+```JS
+function sum(){
+    let a = 8;
+    const b=2;
+    var c=a+b;
+}
+console.log(a,b,c)
+sum()
+console.log(a,b,c)
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: error error
+
+console.log(a)
+// Reference error: a is not defined
+
+console.log(b)
+// Reference error: a is not defined
+
+console.log(c)
+// Reference error: a is not defined
+
+sum()
+
+console.log(a)
+// Reference error: a is not defined
+
+console.log(b)
+// Reference error: b is not defined
+
+console.log(c)
+//Output: undefined
+
+</p>
+</details>
+
+</li>
+
+---
+
+43. **What will be the output ?**
+
+```JS
+let arr=[1,2,3,4,5]
+console.log(arr[2], arr.length);
+arr.length=0;
+console.log(arr[2], arr.length);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 3 5 undefined 0
+
+As we can see in above code 1st questions is so easy but second is bit tricky one for second we are re-assigning the value of arr.length which logically we can do that's why after assign new value to arr.length our output is undefined for index value and 0 for arr.length.
+
+</p>
+</details>
+
+</li>
+
+---
+
+44. **What will be the output ?**
+
+```JS
+for (var i = 0; i < 3; i++) {
+  setTimeout(function() { alert(i); }, 1000 + i);
+}
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 3 3 3
+
+As we are using var so which is a global scope that's why as we are calling setTimeout which itself take time to RUN is call stack so within that time all Loops is finished that's why it takes last value which is 3 in each iteration.
+
+</p>
+</details>
+
+</li>
+
+---
+
+45. **What will be the output ?**
+
+```JS
+for(let i = 0; i <5; i++){
+	setTimeout(()=>{
+		console.log(i);
+    },0)
+}
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 0 1 2 3 4
+
+It relates to previous questions, as we are using let so which is a block scope that's why it keeps increase until loop didn't finished.
+
+</p>
+</details>
+
+</li>
+
+---
+
+46. **What will be the output ?**
+
+```JS
+let count = 0;
+(function immediate() {
+  if (count === 0) {
+    let count = 1;
+    console.log(count); 
+  }
+  console.log(count); 
+})();
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 0 1
+
+As we know code runs top to bottom so when go inside function count === 0 is TRUE as count variable defined before function called so output will be firstly 1 then 0 for second console.log().
+
+</p>
+</details>
+
+</li>
+
+---
+
+47. **What will be the output ?**
+
+```JS
+console.log(1+false); 
+console.log(1+true);
+console.log(1-false); 
+console.log(1+'2'-1);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 1 2 1 11
+
+internal type coersion
+
+</p>
+</details>
+
+</li>
+
+---
+
+48. **What will be the output ?**
+
+```JS
+(function fnA(a) {
+  return (function fnB(b) {
+    console.log(a); 
+  })(1);
+})(0);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 0
+
+It is immediate runs function as we are calling into () and as we can see we are calling function inside function which is also a Closure concept that's why we are able to get the value of variable b
+
+</p>
+</details>
+
+</li>
+
+---
