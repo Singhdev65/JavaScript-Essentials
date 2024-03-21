@@ -2069,3 +2069,219 @@ The updateUser function updates the values of the email and password properties 
 </li>
 
 ---
+
+56. **What will be the output ?**
+
+```JS
+const person = {
+  name: 'Tutu Singh',
+  hobbies: ['swimming'],
+};
+
+function addHobby(hobby, hobbies = person.hobbies) {
+  hobbies.push(hobby);
+  return hobbies;
+}
+
+addHobby('running', []);
+addHobby('dancing');
+addHobby('baking', person.hobbies);
+
+console.log(person.hobbies);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: ["swimming", "dancing", "baking"]
+
+The addHobby function receives two arguments, hobby and hobbies with the default value of the hobbies array on the person object.
+
+First, we invoke the addHobby function, and pass "running" as the value for hobby and an empty array as the value for hobbies. Since we pass an empty array as the value for hobbies, "running" gets added to this empty array.
+
+Then, we invoke the addHobby function, and pass "dancing" as the value for hobby. We didn't pass a value for hobbies, so it gets the default value, the hobbies property on the person object. We push the hobby dancing to the person.hobbies array.
+
+Last, we invoke the addHobby function, and pass "baking" as the value for hobby, and the person.hobbies array as the value for hobbies. We push the hobby baking to the person.hobbies array.
+
+After pushing dancing and baking, the value of person.hobbies is ["swimming", "dancing", "baking"]
+
+</p>
+</details>
+
+</li>
+
+---
+
+57. **What will be the output ?**
+
+```JS
+const add = x => x + x;
+
+function myFunc(num = 2, value = add(num)) {
+  console.log(num, value);
+}
+
+myFunc();
+myFunc(3);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 2 4 and 3 6
+
+First, we invoked myFunc() without passing any arguments. Since we didn't pass arguments, num and value got their default values: num is 2, and value is the returned value of the function add. To the add function, we pass num as an argument, which had the value of 2. add returns 4, which is the value of value.
+
+Then, we invoked myFunc(3) and passed the value 3 as the value for the argument num. We didn't pass an argument for value. Since we didn't pass a value for the value argument, it got the default value: the returned value of the add function. To add, we pass num, which has the value of 3. add returns 6, which is the value of value.
+
+</p>
+</details>
+
+</li>
+
+---
+
+58. **What will be the output ?**
+
+```JS
+const myPromise = Promise.resolve(Promise.resolve('Promise'));
+
+function funOne() {
+  setTimeout(() => console.log('Timeout 1!'), 0);
+  myPromise.then(res => res).then(res => console.log(`${res} 1!`));
+  console.log('Last line 1!');
+}
+
+async function funTwo() {
+  const res = await myPromise;
+  console.log(`${res} 2!`)
+  setTimeout(() => console.log('Timeout 2!'), 0);
+  console.log('Last line 2!');
+}
+
+funOne();
+funTwo();
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: Last line 1! Promise 2! Last line 2! Promise 1! Timeout 1! Timeout 2!
+
+First, we invoke funOne. On the first line of funOne, we call the asynchronous setTimeout function, from which the callback is sent to the Web API. (see my article on the event loop here.)
+
+Then we call the myPromise promise, which is an asynchronous operation. Pay attention, that now only the first then clause was added to the microtask queue.
+
+Both the promise and the timeout are asynchronous operations, the function keeps on running while it's busy completing the promise and handling the setTimeout callback. This means that Last line 1! gets logged first, since this is not an asynchonous operation.
+
+Since the callstack is not empty yet, the setTimeout function and promise in funOne cannot get added to the callstack yet.
+
+In funTwo, the variable res gets Promise because Promise.resolve(Promise.resolve('Promise')) is equivalent to Promise.resolve('Promise') since resolving a promise just resolves it's value. The await in this line stops the execution of the function until it receives the resolution of the promise and then keeps on running synchronously until completion, so Promise 2! and then Last line 2! are logged and the setTimeout is sent to the Web API. If the first then clause in funOne had its own log statement, it would be printed before Promise 2!. Howewer, it executed silently and put the second then clause in microtask queue. So, the second clause will be printed after Promise 2!.
+
+Then the call stack is empty. Promises are microtasks so they are resolved first when the call stack is empty so Promise 1! gets to be logged.
+
+Now, since funTwo popped off the call stack, the call stack is empty. The callbacks waiting in the queue (() => console.log("Timeout 1!") from funOne, and () => console.log("Timeout 2!") from funTwo) get added to the call stack one by one. The first callback logs Timeout 1!, and gets popped off the stack. Then, the second callback logs Timeout 2!, and gets popped off the stack.
+
+</p>
+</details>
+
+</li>
+
+---
+
+59. **What will be the output ?**
+
+```JS
+const emojis = ['🥑', ['✨', '✨', ['🍕', '🍕']]];
+
+console.log(emojis.flat(1));
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: ['🥑', '✨', '✨', ['🍕', '🍕']]
+
+With the flat method, we can create a new, flattened array. The depth of the flattened array depends on the value that we pass. In this case, we passed the value 1 (which we didn't have to, that's the default value), meaning that only the arrays on the first depth will be concatenated. ['🥑'] and ['✨', '✨', ['🍕', '🍕']] in this case. Concatenating these two arrays results in ['🥑', '✨', '✨', ['🍕', '🍕']]
+
+</p>
+</details>
+
+</li>
+
+---
+
+60. **What will be the output ?**
+
+```JS
+const myPromise = Promise.resolve('yo man!, I did it');
+
+(async () => {
+  try {
+    console.log(await myPromise);
+  } catch {
+    throw new Error(`Oops, I couldn't do it`);
+  } finally {
+    console.log('Oh finally!, something has happend');
+  }
+})();
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: "yo man!, I did it"   "Oh finally!, something has happend"
+
+In the try block, we're logging the awaited value of the myPromise variable: "yo man!, I did it". Since no errors were thrown in the try block, the code in the catch block doesn't run. The code in the finally block always runs, "Oh finally!, something has happend" gets logged.
+
+</p>
+</details>
+
+</li>
+
+---
+
+61. **What will be the output ?**
+
+```JS
+const randomValue = 21;
+
+function getInfo() {
+  console.log(typeof randomValue);
+  const randomValue = 'Tutu Singh';
+}
+
+getInfo();
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: ReferenceError
+
+Variables declared with the const keyword are not referenceable before their initialization: this is called the temporal dead zone. In the getInfo function, the variable randomValue is scoped in the functional scope of getInfo. On the line where we want to log the value of typeof randomValue, the variable randomValue isn't initialized yet: a ReferenceError gets thrown! The engine didn't go down the scope chain since we declared the variable randomValue in the getInfo function.
+
+</p>
+</details>
+
+</li>
+
+---
