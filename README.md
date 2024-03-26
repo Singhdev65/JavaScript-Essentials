@@ -2285,3 +2285,203 @@ Variables declared with the const keyword are not referenceable before their ini
 </li>
 
 ---
+
+62. **What will be the output ?**
+
+```JS
+let num = 1;
+const list = ['🥳', '🤠', '🥰', '🤪'];
+
+console.log(list[(num += 1)]);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 🥰
+
+With the += operator, we're incrementing the value of num by 1. num had the initial value 1, so 1 + 1 is 2. The item on the second index in the list array is 🥰, console.log(list[2]) prints 🥰.
+
+</p>
+</details>
+
+</li>
+
+---
+
+63. **What will be the output ?**
+
+```JS
+const person = {
+  name: 'Tutu',
+  age: 29,
+};
+
+const changeAge = (x = { ...person }) => (x.age += 1);
+const changeAgeAndName = (x = { ...person }) => {
+  x.age += 1;
+  x.name = 'Singh';
+};
+
+changeAge(person);
+changeAgeAndName();
+
+console.log(person);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: { name: "Singh", age: 30 }
+
+Both the changeAge and changeAgeAndName functions have a default parameter, namely a newly created object { ...person }. This object has copies of all the key/values in the person object.
+
+First, we invoke the changeAge function and pass the person object as its argument. This function increases the value of the age property by 1. person is now { name: "Tutu", age: 30 }.
+
+Then, we invoke the changeAgeAndName function, however we don't pass a parameter. Instead, the value of x is equal to a new object: { ...person }. Since it's a new object, it doesn't affect the values of the properties on the person object. person is still equal to { name: "Singh", age: 30 }
+
+</p>
+</details>
+
+</li>
+
+---
+
+64. **What will be the output ?**
+
+```JS
+console.log(`${(x => x)('I love')} javaScript`);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: I love javaScript
+
+Expressions within template literals are evaluated first. This means that the string will contain the returned value of the expression, the immediately invoked function (x => x)('I love') in this case. We pass the value 'I love' as an argument to the x => x arrow function. x is equal to 'I love', which gets returned. This results in I love javaScript
+
+</p>
+</details>
+
+</li>
+
+---
+
+65. **What will be the output ?**
+
+```JS
+let name = 'Tutu';
+
+function getName() {
+  console.log(name);
+  let name = 'Yadav';
+}
+
+getName();
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: ReferenceError
+
+Each function has its own execution context (or scope). The getName function first looks within its own context (scope) to see if it contains the variable name we're trying to access. In this case, the getName function contains its own name variable: we declare the variable name with the let keyword, and with the value of 'Sarah'.
+
+Variables with the let keyword (and const) are hoisted, but unlike var, don't get initialized. They are not accessible before the line we declare (initialize) them. This is called the "temporal dead zone". When we try to access the variables before they are declared, JavaScript throws a ReferenceError.
+
+If we wouldn't have declared the name variable within the getName function, the javascript engine would've looked down the scope chain. The outer scope has a variable called name with the value of Tutu. In that case, it would've logged Tutu.
+
+```JS
+let name = 'Tutu';
+
+function getName() {
+  console.log(name);
+}
+
+getName(); // Tutu
+
+```
+
+
+</p>
+</details>
+
+</li>
+
+---
+
+66. **What will be the output ?**
+
+```JS
+const food = ['🍕', '🍫', '🥑', '🍔'];
+const info = { favoriteFood: food[0] };
+
+info.favoriteFood = '🍝';
+
+console.log(food);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: ['🍕', '🍫', '🥑', '🍔']
+
+We set the value of the favoriteFood property on the info object equal to the string with the pizza emoji, '🍕'. A string is a primitive data type. In JavaScript, primitive data types don't interact by reference.
+
+In JavaScript, primitive data types (everything that's not an object) interact by value. In this case, we set the value of the favoriteFood property on the info object equal to the value of the first element in the food array, the string with the pizza emoji in this case ('🍕'). A string is a primitive data type, and interact by value (see my blogpost if you're interested in learning more)
+
+Then, we change the value of the favoriteFood property on the info object. The food array hasn't changed, since the value of favoriteFood was merely a copy of the value of the first element in the array, and doesn't have a reference to the same spot in memory as the element on food[0]. When we log food, it's still the original array, ['🍕', '🍫', '🥑', '🍔'].
+
+</p>
+</details>
+
+</li>
+
+---
+
+67. **Which of these methods modifies the original array?**
+
+```JS
+const emojis = ['✨', '🥑', '😍'];
+
+emojis.map(x => x + '✨');
+emojis.filter(x => x !== '🥑');
+emojis.find(x => x !== '🥑');
+emojis.reduce((acc, cur) => acc + '✨');
+emojis.slice(1, 2, '✨');
+emojis.splice(1, 2, '✨');
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: splice
+
+With splice method, we modify the original array by deleting, replacing or adding elements. In this case, we removed 2 items from index 1 (we removed '🥑' and '😍') and added the ✨ emoji instead.
+
+map, filter and slice return a new array, find returns an element, and reduce returns a reduced value.
+
+</p>
+</details>
+
+</li>
+
+---
