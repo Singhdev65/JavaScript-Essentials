@@ -2485,3 +2485,288 @@ map, filter and slice return a new array, find returns an element, and reduce re
 </li>
 
 ---
+
+68. **What's its value?**
+
+```JS
+const colorConfig = {
+  red: true,
+  blue: false,
+  green: true,
+  black: true,
+  yellow: false,
+};
+
+const colors = ['pink', 'red', 'blue'];
+
+console.log(colorConfig.colors[1]);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: TypeError
+
+In JavaScript, we have two ways to access properties on an object: bracket notation, or dot notation. In this example, we use dot notation (colorConfig.colors) instead of bracket notation (colorConfig["colors"]).
+
+With dot notation, JavaScript tries to find the property on the object with that exact name. In this example, JavaScript tries to find a property called colors on the colorConfig object. There is no property called colors, so this returns undefined. Then, we try to access the value of the first element by using [1]. We cannot do this on a value that's undefined, so it throws a TypeError: Cannot read property '1' of undefined.
+
+JavaScript interprets (or unboxes) statements. When we use bracket notation, it sees the first opening bracket [ and keeps going until it finds the closing bracket ]. Only then, it will evaluate the statement. If we would've used colorConfig[colors[1]], it would have returned the value of the red property on the colorConfig object.
+
+</p>
+</details>
+
+</li>
+
+---
+
+69. **What will be the output ?**
+
+```JS
+function compareMembers(person1, person2 = person) {
+  if (person1 !== person2) {
+    console.log('Not the same!');
+  } else {
+    console.log('They are the same!');
+  }
+}
+
+const person = { name: 'Tutu' };
+
+compareMembers(person);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: They are the same!
+
+Objects are passed by reference. When we check objects for strict equality (===), we're comparing their references.
+
+We set the default value for person2 equal to the person object, and passed the person object as the value for person1.
+
+This means that both values have a reference to the same spot in memory, thus they are equal.
+
+The code block in the else statement gets run, and They are the same! gets logged.
+
+</p>
+</details>
+
+</li>
+
+---
+
+70. **What will be the output ?**
+
+```JS
+const set = new Set();
+
+set.add(1);
+set.add('Tutu');
+set.add({ name: 'Tutu' });
+
+for (let item of set) {
+  console.log(item + 2);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 3, Tutu2, [object Object]2
+
+The + operator is not only used for adding numerical values, but we can also use it to concatenate strings. Whenever the JavaScript engine sees that one or more values are not a number, it coerces the number into a string.
+
+The first one is 1, which is a numerical value. 1 + 2 returns the number 3.
+
+However, the second one is a string "Tutu". "Tutu" is a string and 2 is a number: 2 gets coerced into a string. "Tutu" and "2" get concatenated, which results in the string "Tutu2".
+
+{ name: "Tutu" } is an object. Neither a number nor an object is a string, so it stringifies both. Whenever we stringify a regular object, it becomes "[object Object]". "[object Object]" concatenated with "2" becomes "[object Object]2".
+
+</p>
+</details>
+
+</li>
+
+---
+
+71. **What will be the output ?**
+
+```JS
+const myPromise = () => Promise.resolve('I have resolved!');
+
+function firstFunction() {
+  myPromise().then(res => console.log(res));
+  console.log('second');
+}
+
+async function secondFunction() {
+  console.log(await myPromise());
+  console.log('second');
+}
+
+firstFunction();
+secondFunction();
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: second, I have resolved! and I have resolved!, second
+
+With a promise, we basically say I want to execute this function, but I'll put it aside for now while it's running since this might take a while. Only when a certain value is resolved (or rejected), and when the call stack is empty, I want to use this value.
+
+We can get this value with both .then and the await keywords in an async function. Although we can get a promise's value with both .then and await, they work a bit differently.
+
+In the firstFunction, we (sort of) put the myPromise function aside while it was running, but continued running the other code, which is console.log('second') in this case. Then, the function resolved with the string I have resolved, which then got logged after it saw that the callstack was empty.
+
+With the await keyword in secondFunction, we literally pause the execution of an async function until the value has been resolved before moving to the next line.
+
+This means that it waited for the myPromise to resolve with the value I have resolved, and only once that happened, we moved to the next line: second got logged.
+
+</p>
+</details>
+
+</li>
+
+---
+
+72. **What will be the output ?**
+
+```JS
+const one = false || {} || null;
+const two = null || false || '';
+const three = [] || 0 || true;
+
+console.log(one, two, three);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: {} "" []
+
+With the || operator, we can return the first truthy operand. If all values are falsy, the last operand gets returned.
+
+(false || {} || null): the empty object {} is a truthy value. This is the first (and only) truthy value, which gets returned. one is equal to {}.
+
+(null || false || ""): all operands are falsy values. This means that the last operand, "" gets returned. two is equal to "".
+
+([] || 0 || ""): the empty array[] is a truthy value. This is the first truthy value, which gets returned. three is equal to [].
+
+</p>
+</details>
+
+</li>
+
+---
+
+73. **What will be the output ?**
+
+```JS
+const output = `${[] && 'Im'}possible!
+You should${'' && `n't`} see a therapist after so much JavaScript lol`;
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: Impossible! You should see a therapist after so much JavaScript lol
+
+[] is a truthy value. With the && operator, the right-hand value will be returned if the left-hand value is a truthy value. In this case, the left-hand value [] is a truthy value, so "Im' gets returned.
+
+"" is a falsy value. If the left-hand value is falsy, nothing gets returned. n't doesn't get returned.
+
+</p>
+</details>
+
+</li>
+
+---
+
+74. **What will be the output ?**
+
+```JS
+const getList = ([x, ...y]) => [x, y]
+const getUser = user => { name: user.name, age: user.age }
+
+const list = [1, 2, 3, 4]
+const user = { name: "Tutu", age: 29 }
+
+console.log(getList(list))
+console.log(getUser(user))
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: [1, [2, 3, 4]] and SyntaxError
+
+The getList function receives an array as its argument. Between the parentheses of the getList function, we destructure this array right away. You could see this as:
+
+[x, ...y] = [1, 2, 3, 4]
+
+With the rest parameter ...y, we put all "remaining" arguments in an array. The remaining arguments are 2, 3 and 4 in this case. The value of y is an array, containing all the rest parameters. The value of x is equal to 1 in this case, so when we log [x, y], [1, [2, 3, 4]] gets logged.
+
+The getUser function receives an object. With arrow functions, we don't have to write curly brackets if we just return one value. However, if you want to instantly return an object from an arrow function, you have to write it between parentheses, otherwise everything between the two braces will be interpreted as a block statement. In this case the code between the braces is not a valid JavaScript code, so a SyntaxError gets thrown.
+
+The following function would have returned an object:
+
+const getUser = user => ({ name: user.name, age: user.age })
+
+</p>
+</details>
+
+</li>
+
+---
+
+75. **What will be the output ?**
+
+```JS
+const info = {
+  [Symbol('a')]: 'b',
+};
+
+console.log(info);
+console.log(Object.keys(info));
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: {Symbol('a'): 'b'} and []
+
+A Symbol is not enumerable. The Object.keys method returns all enumerable key properties on an object. The Symbol won't be visible, and an empty array is returned. When logging the entire object, all properties will be visible, even non-enumerable ones.
+
+This is one of the many qualities of a symbol: besides representing an entirely unique value (which prevents accidental name collision on objects, for example when working with 2 libraries that want to add properties to the same object), you can also "hide" properties on objects this way (although not entirely. You can still access symbols using the Object.getOwnPropertySymbols() method).
+
+</p>
+</details>
+
+</li>
+
+---
