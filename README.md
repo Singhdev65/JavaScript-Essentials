@@ -2770,3 +2770,168 @@ This is one of the many qualities of a symbol: besides representing an entirely 
 </li>
 
 ---
+
+76. **What will be the output ?**
+
+```JS
+function nums(a, b) {
+  if (a > b) console.log('a is bigger');
+  else console.log('b is bigger');
+  return
+  a + b;
+}
+
+console.log(nums(4, 2));
+console.log(nums(1, 2));
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: a is bigger, undefined and b is bigger, undefined
+
+In JavaScript, we don't have to write the semicolon (;) explicitly, however the JavaScript engine still adds them after statements. This is called Automatic Semicolon Insertion. A statement can for example be variables, or keywords like throw, return, break, etc.
+
+Here, we wrote a return statement, and another value a + b on a new line. However, since it's a new line, the engine doesn't know that it's actually the value that we wanted to return. Instead, it automatically added a semicolon after return. You could see this as:
+
+return;
+a + b;
+
+This means that a + b is never reached, since a function stops running after the return keyword. If no value gets returned, like here, the function returns undefined. Note that there is no automatic insertion after if/else statements!
+
+</p>
+</details>
+
+</li>
+
+---
+
+77. **What will be the output ?**
+
+```JS
+function getItems(fruitList, ...args, favoriteFruit) {
+  return [...fruitList, ...args, favoriteFruit]
+}
+
+getItems(["banana", "apple"], "pear", "orange")
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: SyntaxError
+
+...args is a rest parameter. The rest parameter's value is an array containing all remaining arguments, and can only be the last parameter! In this example, the rest parameter was the second parameter. This is not possible, and will throw a syntax error.
+
+function getItems(fruitList, favoriteFruit, ...args) {
+  return [...fruitList, ...args, favoriteFruit];
+}
+
+getItems(['banana', 'apple'], 'pear', 'orange');
+The above example works. This returns the array [ 'banana', 'apple', 'orange', 'pear' ]
+
+</p>
+</details>
+
+</li>
+
+---
+
+78. **What will be the output ?**
+
+```JS
+const person = {
+  name: 'Tutu',
+  age: 4,
+};
+
+for (const [x, y] of Object.entries(person)) {
+  console.log(x, y);
+}
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: name Tutu and age 4
+
+Object.entries(person) returns an array of nested arrays, containing the keys and objects:
+
+[ [ 'name', 'Lydia' ], [ 'age', 21 ] ]
+
+Using the for-of loop, we can iterate over each element in the array, the subarrays in this case. We can destructure the subarrays instantly in the for-of loop, using const [x, y]. x is equal to the first element in the subarray, y is equal to the second element in the subarray.
+
+The first subarray is [ "name", "Lydia" ], with x equal to "name", and y equal to "Lydia", which get logged. The second subarray is [ "age", 21 ], with x equal to "age", and y equal to 21, which get logged.
+
+</p>
+</details>
+
+</li>
+
+---
+
+79. **What will be the output ?**
+
+```JS
+function giveTutuPizza() {
+  return 'Here is pizza!';
+}
+
+const giveTutuChocolate = () =>
+  "Here's chocolate... now go hit the gym already.";
+
+console.log(giveTutuPizza.prototype);
+console.log(giveTutuChocolate.prototype);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼:  { constructor: ...} undefined
+
+Regular functions, such as the giveTutuPizza function, have a prototype property, which is an object (prototype object) with a constructor property. Arrow functions however, such as the giveTutuChocolate function, do not have this prototype property. undefined gets returned when trying to access the prototype property using giveTutuChocolate.prototype.
+
+</p>
+</details>
+
+</li>
+
+---
+80. **What will be the output ?**
+
+```JS
+let newList = [1, 2, 3].push(4);
+
+console.log(newList.push(5));
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: Error
+
+The .push method returns the new length of the array, not the array itself! By setting newList equal to [1, 2, 3].push(4), we set newList equal to the new length of the array: 4.
+
+Then, we try to use the .push method on newList. Since newList is the numerical value 4, we cannot use the .push method: a TypeError is thrown.
+
+</p>
+</details>
+
+</li>
+
+---
