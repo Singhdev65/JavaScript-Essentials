@@ -2935,3 +2935,184 @@ Then, we try to use the .push method on newList. Since newList is the numerical 
 </li>
 
 ---
+
+81. **What will be the output ?**
+
+```JS
+console.log('I want pizza'[0]);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: "I"
+
+In order to get a character at a specific index of a string, you can use bracket notation. The first character in the string has index 0, and so on. In this case, we want to get the element with index 0, the character "I', which gets logged.
+
+Note that this method is not supported in IE7 and below. In that case, use .charAt().
+
+</p>
+</details>
+
+</li>
+
+---
+
+82. **What will be the output ?**
+
+```JS
+function checkAge(age) {
+  if (age < 18) {
+    const message = "Sorry, you're too young.";
+  } else {
+    const message = "Yay! You're old enough!";
+  }
+
+  return message;
+}
+
+console.log(checkAge(21));
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: ReferenceError
+
+Variables with the const and let keywords are block-scoped. A block is anything between curly brackets ({ }). In this case, the curly brackets of the if/else statements. You cannot reference a variable outside of the block it's declared in, a ReferenceError gets thrown.
+
+</p>
+</details>
+
+</li>
+
+---
+
+83. **What will be the output ?**
+
+```JS
+const person = {
+  name: 'Tutu',
+  age: 4,
+};
+
+let city = person.city;
+city = 'Noida';
+
+console.log(person);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: { name: "Tutu", age: 4 }
+
+We set the variable city equal to the value of the property called city on the person object. There is no property on this object called city, so the variable city has the value of undefined.
+
+Note that we are not referencing the person object itself! We simply set the variable city equal to the current value of the city property on the person object.
+
+Then, we set city equal to the string "Noida". This doesn't change the person object: there is no reference to that object.
+
+When logging the person object, the unmodified object gets returned.
+
+</p>
+</details>
+
+</li>
+
+---
+
+84. **What will be the output ?**
+
+```JS
+var status = '😎';
+
+setTimeout(() => {
+  const status = '😍';
+
+  const data = {
+    status: '🥑',
+    getStatus() {
+      return this.status;
+    },
+  };
+
+  console.log(data.getStatus());
+  console.log(data.getStatus.call(this));
+}, 0);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: "🥑" and "😎"
+
+The value of the this keyword is dependent on where you use it. In a method, like the getStatus method, the this keyword refers to the object that the method belongs to. The method belongs to the data object, so this refers to the data object. When we log this.status, the status property on the data object gets logged, which is "🥑".
+
+With the call method, we can change the object to which the this keyword refers. In functions, the this keyword refers to the the object that the function belongs to. We declared the setTimeout function on the global object, so within the setTimeout function, the this keyword refers to the global object. On the global object, there is a variable called status with the value of "😎". When logging this.status, "😎" gets logged.
+
+</p>
+</details>
+
+</li>
+
+---
+
+85. **What will be the output ?**
+
+```JS
+const add = () => {
+  const cache = {};
+  return num => {
+    if (num in cache) {
+      return `From cache! ${cache[num]}`;
+    } else {
+      const result = num + 10;
+      cache[num] = result;
+      return `Calculated! ${result}`;
+    }
+  };
+};
+
+const addFunction = add();
+console.log(addFunction(10));
+console.log(addFunction(10));
+console.log(addFunction(5 * 2));
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: Calculated! 20 From cache! 20 From cache! 20
+
+The add function is a memoized function. With memoization, we can cache the results of a function in order to speed up its execution. In this case, we create a cache object that stores the previously returned values.
+
+If we call the addFunction function again with the same argument, it first checks whether it has already gotten that value in its cache. If that's the case, the cache value will be returned, which saves execution time. Otherwise, if it's not cached, it will calculate the value and store it afterward.
+
+We call the addFunction function three times with the same value: on the first invocation, the value of the function when num is equal to 10 isn't cached yet. The condition of the if-statement num in cache returns false, and the else block gets executed: Calculated! 20 gets logged, and the value of the result gets added to the cache object. cache now looks like { 10: 20 }.
+
+The second time, the cache object contains the value that gets returned for 10. The condition of the if-statement num in cache returns true, and 'From cache! 20' gets logged.
+
+The third time, we pass 5 * 2 to the function which gets evaluated to 10. The cache object contains the value that gets returned for 10. The condition of the if-statement num in cache returns true, and 'From cache! 20' gets logged.
+
+</p>
+</details>
+
+</li>
+
+---
