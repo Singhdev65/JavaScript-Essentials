@@ -90,13 +90,13 @@ function outer() {
 
 This ```JS code defines two functions: outer and inner. When you run outer(), it calls inner(), logs "bar" to the console, and exits the outer function. The return statement doesn't affect the output. The final result is that "bar" is printed to the console when the script is executed.
 
-
 </p>
 </details>
 
 </li>
 
 ---
+
 4. **What will be the output ?**
 
 ```JS
@@ -128,6 +128,7 @@ In this code snippet, there's a conditional block, but due to function hoisting,
 </li>
 
 ---
+
 5. **What will be the output ?**
 
 ```JS
@@ -152,11 +153,9 @@ In this code snippet, there's a conditional block, but due to function hoisting,
 
 #### ➼➼➼: foo
 
-
 The code defines a function foo that takes a function x as a parameter. Inside foo, it immediately calls x(), and then declares a nested function x that logs "foo" to the console.
 
 When foo is invoked with an anonymous function logging "bar," due to hoisting, the nested x inside foo is called first, logging "foo," and then the anonymous function is invoked, logging "bar."
-
 
 </p>
 </details>
@@ -189,7 +188,6 @@ When foo is invoked with an anonymous function logging "bar," due to hoisting, t
 
 #### ➼➼➼: 3
 
-
 The given code will output: 3
 Here's the explanation:
 
@@ -200,6 +198,7 @@ function foo() {
   console.log(1);
 }
 ```
+
 The first function declaration function foo() is hoisted to the top, and it logs 1 to the console.
 
 Next, there is a variable declaration using var:
@@ -209,6 +208,7 @@ var foo = function () {
   console.log(2);
 };
 ```
+
 This declaration is also hoisted to the top, but it doesn't override the previous function declaration. At this point, foo still refers to the function declared in step 1.
 
 Another function declaration follows:
@@ -218,6 +218,7 @@ function foo() {
   console.log(3);
 }
 ```
+
 Again, this function declaration is hoisted to the top. It overrides the previous function declaration and sets foo to the new function that logs 3 to the console.
 
 When foo() is called:
@@ -225,8 +226,8 @@ When foo() is called:
 ```JS
 foo();
 ```
-It executes the latest function assigned to foo, which logs 3 to the console.
 
+It executes the latest function assigned to foo, which logs 3 to the console.
 
 </p>
 </details>
@@ -234,6 +235,7 @@ It executes the latest function assigned to foo, which logs 3 to the console.
 </li>
 
 ---
+
 7. **What will be the output ?**
 
 ```JS
@@ -275,17 +277,12 @@ otherAnimal = function () {
 
 In this code, an attempt to invoke otherAnimal before its initialization as a function will result in an error. The error occurs because otherAnimal is assigned a function expression after the attempted invocation.
 
-
-
-
-
 </p>
 </details>
 
 </li>
 
 ---
-
 
 8. **What will be the output ?**
 
@@ -310,7 +307,6 @@ In this code, an attempt to invoke otherAnimal before its initialization as a fu
 
 #### ➼➼➼: ƒ b() {} 6
 
-
 Function Expression Assignment:
 
 ```JS
@@ -318,6 +314,7 @@ Function Expression Assignment:
 b = function a() {};
 
 ```
+
 Declares a function expression a and assigns it to the variable b.
 
 Variable Declaration and Assignment:
@@ -326,6 +323,7 @@ Variable Declaration and Assignment:
 
 var a = (b = 6);
 ```
+
 Assigns the value 6 to b and assigns the result (which is 6) to a.
 
 Function Expression Assignment:
@@ -334,6 +332,7 @@ Function Expression Assignment:
 
 a = function b() {};
 ```
+
 Declares a function expression b and assigns it to a.
 
 Function Declarations (hoisted):
@@ -343,6 +342,7 @@ Function Declarations (hoisted):
 function b() {}
 function a() {}
 ```
+
 Hoisted function declarations for b and a.
 
 Logging the Variables:
@@ -351,12 +351,14 @@ Logging the Variables:
 
 console.log(a, b);
 ```
+
 Outputs the values, resulting in:
 
 ```JS
 
 function b() 6
 ```
+
 In summary, the code involves variable reassignments, function expressions, and hoisted function declarations. The console.log statement shows the final values of a (function expression) and b (assigned number).
 
 </p>
@@ -365,7 +367,6 @@ In summary, the code involves variable reassignments, function expressions, and 
 </li>
 
 ---
-
 
 9. **What will be the output ?**
 
@@ -394,6 +395,7 @@ fn();
 <p>
 
 #### ➼➼➼:
+
 line number 4 undefined
 line number 7 21
 line number 11 31
@@ -426,6 +428,7 @@ function fn() {
 }
 fn();
 ```
+
 Output:
 
 ```JS
@@ -435,12 +438,12 @@ line number 7 21
 line number 11 31
 line number 13 31
 ```
+
 Inside the function fn, a new variable a is declared and assigned the value 20, but the logging of the variable at "line number 4" prints undefined because there is a variable shadowing effect. The inner variable a is hoisted to the top of the function, so at the point of logging, it exists but hasn't been assigned a value yet.
 
 The value of a is then incremented and logged at "line number 7". Inside the if statement, a new variable a is declared and assigned the value 30, incremented, and logged at "line number 11". After exiting the if statement, the value of a is logged again at "line number 13".
 
 So, the final output shows the values of a at different points inside the function. The variable a inside the function does affect the outer a due to the hoisting and variable shadowing.
-
 
 </p>
 </details>
@@ -482,6 +485,7 @@ After the function call, there are two console.log statements:
 console.log(typeof a);: This attempts to log the type of the variable a outside the function. However, since a is declared with let inside the function, it has block scope and is not accessible outside the function. As a result, this line will throw an error, and the script execution may stop at this point.
 console.log(typeof b);: This attempts to log the type of the variable b outside the function. Surprisingly, b is not declared with let or var inside the function, making it implicitly a global variable. As a result, this line will log the type of b, which is number.
 In summary, the code will likely throw an error at the first console.log statement (typeof a) due to the block-scoping of a. The second console.log statement (typeof b) will log number, as b becomes a global variable due to the absence of a declaration keyword (let, var, or const) inside the function.
+
 </p>
 </details>
 
@@ -524,6 +528,7 @@ So the object a looks like -
     "[object Object]": 456
 }
 ```
+
 </p>
 </details>
 
@@ -551,7 +556,7 @@ console.log(obj1.key, obj2.key, obj3.key);
 <summary><b>Answer</b></summary>
 <p>
 
-#### ➼➼➼:  `new value` `another value` `new value`
+#### ➼➼➼: `new value` `another value` `new value`
 
 In this code, we are declaring three variables obj1, obj2, and obj3, and assigning an object to each of them. Then, we are reassigning a new object to obj2 and modifying a property of obj1.
 
@@ -560,6 +565,7 @@ When the console.log statement is executed, it logs the values of the key proper
 This is because when an object is assigned to a variable, the variable stores a reference to the object in memory rather than the object itself. Changing the value of a property of the object using one variable will affect the value of that property when accessed using a different variable that references the same object. However, reassigning a new object to a variable will change the reference stored in that variable, so the original object is no longer accessible using that variable.
 
 In this case, the value of the key property for obj1 was changed to "new value" using the obj1 variable, which affected the value of the key property when accessed using the obj3 variable, because both variables reference the same object. However, the value of the key property for obj2 was not affected, because the obj2 variable was reassigned to reference a new object.
+
 </p>
 </details>
 
@@ -852,7 +858,7 @@ console.log(a.x, b.x, c.x, d.x, e.x);
 
 The code is using the forEach method to iterate over an array of objects, and it is modifying the x property of each object by multiplying it by 2.
 
-It's updating the original objects with x*2 values.
+It's updating the original objects with x\*2 values.
 
 So, the output of the code is 2 4 6 8 10.
 
@@ -1128,7 +1134,7 @@ console.log(a, b);
 <summary><b>Answer</b></summary>
 <p>
 
-#### ➼➼➼: 1 2 
+#### ➼➼➼: 1 2
 
 This is because of the object destructuring syntax introduced in ES6.
 
@@ -1754,9 +1760,9 @@ let count = 0;
 (function immediate() {
   if (count === 0) {
     let count = 1;
-    console.log(count); 
+    console.log(count);
   }
-  console.log(count); 
+  console.log(count);
 })();
 ```
 
@@ -1780,9 +1786,9 @@ As we know code runs top to bottom so when go inside function count === 0 is TRU
 47. **What will be the output ?**
 
 ```JS
-console.log(1+false); 
+console.log(1+false);
 console.log(1+true);
-console.log(1-false); 
+console.log(1-false);
 console.log(1+'2'-1);
 ```
 
@@ -1808,7 +1814,7 @@ internal type coersion
 ```JS
 (function fnA(a) {
   return (function fnB(b) {
-    console.log(a); 
+    console.log(a);
   })(1);
 })(0);
 ```
@@ -2245,7 +2251,7 @@ const myPromise = Promise.resolve('yo man!, I did it');
 <summary><b>Answer</b></summary>
 <p>
 
-#### ➼➼➼: "yo man!, I did it"   "Oh finally!, something has happend"
+#### ➼➼➼: "yo man!, I did it" "Oh finally!, something has happend"
 
 In the try block, we're logging the awaited value of the myPromise variable: "yo man!, I did it". Since no errors were thrown in the try block, the code in the catch block doesn't run. The code in the finally block always runs, "Oh finally!, something has happend" gets logged.
 
@@ -2413,7 +2419,6 @@ function getName() {
 getName(); // Tutu
 
 ```
-
 
 </p>
 </details>
@@ -2830,7 +2835,7 @@ getItems(["banana", "apple"], "pear", "orange")
 ...args is a rest parameter. The rest parameter's value is an array containing all remaining arguments, and can only be the last parameter! In this example, the rest parameter was the second parameter. This is not possible, and will throw a syntax error.
 
 function getItems(fruitList, favoriteFruit, ...args) {
-  return [...fruitList, ...args, favoriteFruit];
+return [...fruitList, ...args, favoriteFruit];
 }
 
 getItems(['banana', 'apple'], 'pear', 'orange');
@@ -2899,7 +2904,7 @@ console.log(giveTutuChocolate.prototype);
 <summary><b>Answer</b></summary>
 <p>
 
-#### ➼➼➼:  { constructor: ...} undefined
+#### ➼➼➼: { constructor: ...} undefined
 
 Regular functions, such as the giveTutuPizza function, have a prototype property, which is an object (prototype object) with a constructor property. Arrow functions however, such as the giveTutuChocolate function, do not have this prototype property. undefined gets returned when trying to access the prototype property using giveTutuChocolate.prototype.
 
@@ -2909,6 +2914,7 @@ Regular functions, such as the giveTutuPizza function, have a prototype property
 </li>
 
 ---
+
 80. **What will be the output ?**
 
 ```JS
@@ -3108,7 +3114,165 @@ We call the addFunction function three times with the same value: on the first i
 
 The second time, the cache object contains the value that gets returned for 10. The condition of the if-statement num in cache returns true, and 'From cache! 20' gets logged.
 
-The third time, we pass 5 * 2 to the function which gets evaluated to 10. The cache object contains the value that gets returned for 10. The condition of the if-statement num in cache returns true, and 'From cache! 20' gets logged.
+The third time, we pass 5 \* 2 to the function which gets evaluated to 10. The cache object contains the value that gets returned for 10. The condition of the if-statement num in cache returns true, and 'From cache! 20' gets logged.
+
+</p>
+</details>
+
+</li>
+
+---
+
+86. **What will be the output ?**
+
+```JS
+const box = { x: 10, y: 20 };
+
+Object.freeze(box);
+
+const shape = box;
+shape.x = 100;
+
+console.log(shape);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: { x: 10, y: 20 }
+
+Object.freeze makes it impossible to add, remove, or modify properties of an object (unless the property's value is another object).
+
+When we create the variable shape and set it equal to the frozen object box, shape also refers to a frozen object. You can check whether an object is frozen by using Object.isFrozen. In this case, Object.isFrozen(shape) would return true, since the variable shape has a reference to a frozen object.
+
+Since shape is frozen, and since the value of x is not an object, we cannot modify the property x. x is still equal to 10, and { x: 10, y: 20 } gets logged.
+
+</p>
+</details>
+
+</li>
+
+---
+
+87. **What will be the output ?**
+
+```JS
+function addToList(item, list) {
+  return list.push(item);
+}
+
+const result = addToList('apple', ['banana']);
+console.log(result);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 2
+
+The .push() method returns the length of the new array! Previously, the array contained one element (the string "banana") and had a length of 1. After adding the string "apple" to the array, the array contains two elements, and has a length of 2. This gets returned from the addToList function.
+
+The push method modifies the original array. If you wanted to return the array from the function rather than the length of the array, you should have returned list after pushing item to it.
+
+</p>
+</details>
+
+</li>
+
+---
+
+88. **What will be the output ?**
+
+```JS
+console.log(String.raw`Hello\nworld`);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: Hello\nworld
+
+String.raw returns a string where the escapes (\n, \v, \t etc.) are ignored! Backslashes can be an issue since you could end up with something like:
+
+const path = `C:\Documents\Projects\table.html`
+
+Which would result in:
+
+"C:DocumentsProjects able.html"
+
+With String.raw, it would simply ignore the escape and print:
+
+C:\Documents\Projects\table.html
+
+In this case, the string is Hello\nworld, which gets logged.
+
+</p>
+</details>
+
+</li>
+
+---
+
+89. **What will be the output ?**
+
+```JS
+async function getData() {
+  return await Promise.resolve('I made it!');
+}
+
+const data = getData();
+console.log(data);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: Promise {<pending>}
+
+An async function always returns a promise. The await still has to wait for the promise to resolve: a pending promise gets returned when we call getData() in order to set data equal to it.
+
+If we wanted to get access to the resolved value "I made it", we could have used the .then() method on data:
+
+data.then(res => console.log(res))
+
+This would've logged "I made it!"
+
+</p>
+</details>
+
+</li>
+
+---
+
+90. **What will be the output ?**
+
+```JS
+console.log(Number(2) === Number(2));
+console.log(Boolean(false) === Boolean(false));
+console.log(Symbol('foo') === Symbol('foo'));
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: true, true, false
+
+Every Symbol is entirely unique. The purpose of the argument passed to the Symbol is to give the Symbol a description. The value of the Symbol is not dependent on the passed argument. As we test equality, we are creating two entirely new symbols: the first Symbol('foo'), and the second Symbol('foo'). These two values are unique and not equal to each other, Symbol('foo') === Symbol('foo') returns false.
 
 </p>
 </details>
