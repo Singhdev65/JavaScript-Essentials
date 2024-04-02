@@ -3280,3 +3280,168 @@ Every Symbol is entirely unique. The purpose of the argument passed to the Symbo
 </li>
 
 ---
+
+91. **What will be the output ?**
+
+```JS
+[1, 2, 3, 4].reduce((x, y) => console.log(x, y));
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 1 2 and undefined 3 and undefined 4
+
+The first argument that the reduce method receives is the accumulator, x in this case. The second argument is the current value, y. With the reduce method, we execute a callback function on every element in the array, which could ultimately result in one single value.
+
+In this example, we are not returning any values, we are simply logging the values of the accumulator and the current value.
+
+The value of the accumulator is equal to the previously returned value of the callback function. If you don't pass the optional initialValue argument to the reduce method, the accumulator is equal to the first element on the first call.
+
+On the first call, the accumulator (x) is 1, and the current value (y) is 2. We don't return from the callback function, we log the accumulator, and the current values: 1 and 2 get logged.
+
+If you don't return a value from a function, it returns undefined. On the next call, the accumulator is undefined, and the current value is 3. undefined and 3 get logged.
+
+On the fourth call, we again don't return from the callback function. The accumulator is again undefined, and the current value is 4. undefined and 4 get logged.
+
+</p>
+</details>
+
+</li>
+
+---
+
+92. **What will be the output ?**
+
+```JS
+const value = { number: 10 };
+
+const multiply = (x = { ...value }) => {
+  console.log((x.number *= 2));
+};
+
+multiply();
+multiply();
+multiply(value);
+multiply(value);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 20, 20, 20, 40
+
+In ES6, we can initialize parameters with a default value. The value of the parameter will be the default value, if no other value has been passed to the function, or if the value of the parameter is "undefined". In this case, we spread the properties of the value object into a new object, so x has the default value of { number: 10 }.
+
+The default argument is evaluated at call time! Every time we call the function, a new object is created. We invoke the multiply function the first two times without passing a value: x has the default value of { number: 10 }. We then log the multiplied value of that number, which is 20.
+
+The third time we invoke multiply, we do pass an argument: the object called value. The _= operator is actually shorthand for x.number = x.number _ 2: we modify the value of x.number, and log the multiplied value 20.
+
+The fourth time, we pass the value object again. x.number was previously modified to 20, so x.number \*= 2 logs 40.
+
+</p>
+</details>
+
+</li>
+
+---
+
+93. **What will be the output ?**
+
+```JS
+let num = 10;
+
+const increaseNumber = () => num++;
+const increasePassedNumber = number => number++;
+
+const num1 = increaseNumber();
+const num2 = increasePassedNumber(num1);
+
+console.log(num1);
+console.log(num2);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 10, 10
+
+The unary operator ++ first returns the value of the operand, then increments the value of the operand. The value of num1 is 10, since the increaseNumber function first returns the value of num, which is 10, and only increments the value of num afterward.
+
+num2 is 10, since we passed num1 to the increasePassedNumber. number is equal to 10(the value of num1). Again, the unary operator ++ first returns the value of the operand, then increments the value of the operand. The value of number is 10, so num2 is equal to 10.
+
+</p>
+</details>
+
+</li>
+
+---
+
+94. **What will be the output ?**
+
+```JS
+const numbers = [1, 2, 3, 4, 5];
+const [y] = numbers;
+
+console.log(y);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 1
+
+We can unpack values from arrays or properties from objects through destructuring. For example:
+
+[a, b] = [1, 2];
+
+The value of a is now 1, and the value of b is now 2. What we actually did in the question, is:
+
+[y] = [1, 2, 3, 4, 5];
+
+This means that the value of y is equal to the first value in the array, which is the number 1. When we log y, 1 is returned.
+
+</p>
+</details>
+
+</li>
+
+---
+
+95. **What will be the output ?**
+
+```JS
+const user = { name: 'Tutu', age: 4 };
+const admin = { admin: true, ...user };
+
+console.log(admin);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: { admin: true, name: "Tutu", age: 4 }
+
+It's possible to combine objects using the spread operator .... It lets you create copies of the key/value pairs of one object, and add them to another object. In this case, we create copies of the user object, and add them to the admin object. The admin object now contains the copied key/value pairs, which results in { admin: true, name: "Tutu", age: 4 }.
+
+</p>
+</details>
+
+</li>
+
+---
