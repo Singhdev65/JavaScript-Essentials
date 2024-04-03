@@ -3445,3 +3445,163 @@ It's possible to combine objects using the spread operator .... It lets you crea
 </li>
 
 ---
+
+96. **What will be the output ?**
+
+```JS
+const name = 'Tutu';
+age = 4;
+
+console.log(delete name);
+console.log(delete age);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: false, true
+
+The delete operator returns a boolean value: true on a successful deletion, else it'll return false. However, variables declared with the var, const, or let keywords cannot be deleted using the delete operator.
+
+The name variable was declared with a const keyword, so its deletion is not successful: false is returned. When we set age equal to 21, we actually added a property called age to the global object. You can successfully delete properties from objects this way, also the global object, so delete age returns true.
+
+</p>
+</details>
+
+</li>
+
+---
+
+97. **What will be the output ?**
+
+```JS
+const set = new Set([1, 1, 2, 3, 4]);
+
+console.log(set);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: {1, 2, 3, 4}
+
+The Set object is a collection of unique values: a value can only occur once in a set.
+
+We passed the iterable [1, 1, 2, 3, 4] with a duplicate value 1. Since we cannot have two of the same values in a set, one of them is removed. This results in {1, 2, 3, 4}.
+
+</p>
+</details>
+
+</li>
+
+---
+
+98. **What will be the output ?**
+
+```JS
+(() => {
+  let x = (y = 10);
+})();
+
+console.log(typeof x);
+console.log(typeof y);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: "undefined", "number"
+
+let x = (y = 10); is actually shorthand for:
+
+y = 10;
+let x = y;
+When we set y equal to 10, we actually add a property y to the global object (window in the browser, global in Node). In a browser, window.y is now equal to 10.
+
+Then, we declare a variable x with the value of y, which is 10. Variables declared with the let keyword are block scoped, they are only defined within the block they're declared in; the immediately invoked function expression (IIFE) in this case. When we use the typeof operator, the operand x is not defined: we are trying to access x outside of the block it's declared in. This means that x is not defined. Values who haven't been assigned a value or declared are of type "undefined". console.log(typeof x) returns "undefined".
+
+However, we created a global variable y when setting y equal to 10. This value is accessible anywhere in our code. y is defined, and holds a value of type "number". console.log(typeof y) returns "number".
+
+</p>
+</details>
+
+</li>
+
+---
+
+99. **What will be the output ?**
+
+```JS
+function Car() {
+  this.make = 'Tata';
+  return { make: 'BMW' };
+}
+
+const myCar = new Car();
+console.log(myCar.make);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: BMW
+
+When a constructor function is called with the new keyword, it creates an object and sets the this keyword to refer to that object. By default, if the constructor function doesn't explicitly return anything, it will return the newly created object.
+
+In this case, the constructor function Car explicitly returns a new object with make set to "BMW", which overrides the default behavior. Therefore, when new Car() is called, the returned object is assigned to myCar, resulting in the output being "BMW" when myCar.make is accessed.
+
+</p>
+</details>
+
+</li>
+
+---
+
+100. **What will be the output ?**
+
+```JS
+function getInfo(member, year) {
+  member.name = 'Tutu';
+  year = '2018';
+}
+
+const person = { name: 'Naina' };
+const birthYear = '2020';
+
+getInfo(person, birthYear);
+
+console.log(person, birthYear);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: { name: "Tutu" }, "2020"
+
+Arguments are passed by value, unless their value is an object, then they're passed by reference. birthYear is passed by value, since it's a string, not an object. When we pass arguments by value, a copy of that value is created.
+
+The variable birthYear has a reference to the value "2020". The argument year also has a reference to the value "2020", but it's not the same value as birthYear has a reference to. When we update the value of year by setting year equal to "1998", we are only updating the value of year. birthYear is still equal to "2020".
+
+The value of person is an object. The argument member has a (copied) reference to the same object. When we modify a property of the object member has a reference to, the value of person will also be modified, since they both have a reference to the same object. person's name property is now equal to the value "Tutu"
+
+</p>
+</details>
+
+</li>
+
+---
