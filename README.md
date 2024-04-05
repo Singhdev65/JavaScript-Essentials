@@ -3651,7 +3651,7 @@ console.log(num);
 
 Only the first number in the string is returned. Based on the radix (the second argument in order to specify what type of number we want to parse it to: base 10, hexadecimal, octal, binary, etc.), the parseInt checks whether the characters in the string are valid. Once it encounters a character that isn't a valid number in the radix, it stops parsing and ignores the following characters.
 
-* is not a valid number. It only parses "7" into the decimal 7. num now holds the value of 7.
+- is not a valid number. It only parses "7" into the decimal 7. num now holds the value of 7.
 
 </p>
 </details>
@@ -3770,6 +3770,156 @@ When we pass multiple promises to the Promise.race method, it resolves/rejects t
 [1, 2] is our initial value. This is the value we start with, and the value of the very first acc. During the first round, acc is [1,2], and cur is [0, 1]. We concatenate them, which results in [1, 2, 0, 1].
 
 Then, [1, 2, 0, 1] is acc and [2, 3] is cur. We concatenate them, and get [1, 2, 0, 1, 2, 3]
+
+</p>
+</details>
+
+</li>
+
+---
+
+107. **What will be the output ?**
+
+```JS
+(() => {
+  let x, y;
+  try {
+    throw new Error();
+  } catch (x) {
+    (x = 1), (y = 2);
+    console.log(x);
+  }
+  console.log(x);
+  console.log(y);
+})();
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 1 undefined 2
+
+The catch block receives the argument x. This is not the same x as the variable when we pass arguments. This variable x is block-scoped.
+
+Later, we set this block-scoped variable equal to 1, and set the value of the variable y. Now, we log the block-scoped variable x, which is equal to 1.
+
+Outside of the catch block, x is still undefined, and y is 2. When we want to console.log(x) outside of the catch block, it returns undefined, and y returns 2.
+
+</p>
+</details>
+
+</li>
+
+---
+
+108. **What will be the output ?**
+
+```JS
+const numbers = [1, 2, 3];
+numbers[10] = 11;
+console.log(numbers);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: [1, 2, 3, empty x 7, 11]
+
+When you set a value to an element in an array that exceeds the length of the array, JavaScript creates something called "empty slots". These actually have the value of undefined, but you will see something like:
+
+[1, 2, 3, empty x 7, 11]
+
+depending on where you run it (it's different for every browser, node, etc.)
+
+</p>
+</details>
+
+</li>
+
+---
+
+109. **What will be the output ?**
+
+```JS
+console.log(typeof typeof 1);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: "string"
+
+typeof 1 returns "number". typeof "number" returns "string"
+
+</p>
+</details>
+
+</li>
+
+---
+
+110. **What will be the output ?**
+
+```JS
+function sayHi() {
+  return (() => 0)();
+}
+
+console.log(typeof sayHi());
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: "number"
+
+The sayHi function returns the returned value of the immediately invoked function expression (IIFE). This function returned 0, which is type "number".
+
+FYI: typeof can return the following list of values: undefined, boolean, number, bigint, string, symbol, function and object. Note that typeof null returns "object".
+
+</p>
+</details>
+
+</li>
+
+---
+
+111. **What will be the output ?**
+
+```JS
+const person = { name: 'Tutu' };
+
+function sayHi(age) {
+  return `${this.name} is ${age}`;
+}
+
+console.log(sayHi.call(person, 4));
+console.log(sayHi.bind(person, 4));
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: Tutu is 4 function
+
+With both, we can pass the object to which we want the this keyword to refer to. However, .call is also executed immediately!
+
+.bind. returns a copy of the function, but with a bound context! It is not executed immediately.
 
 </p>
 </details>
