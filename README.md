@@ -3927,3 +3927,191 @@ With both, we can pass the object to which we want the this keyword to refer to.
 </li>
 
 ---
+
+112. **What will be the output ?**
+
+```JS
+for (let i = 1; i < 5; i++) {
+  if (i === 3) continue;
+  console.log(i);
+}
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 1 2 4
+
+The continue statement skips an iteration if a certain condition returns true.
+
+</p>
+</details>
+
+</li>
+
+---
+
+113. **What will be the output ?**
+
+```JS
+const obj = { a: 'one', b: 'two', a: 'three' };
+console.log(obj);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: { a: "three", b: "two" }
+
+If you have two keys with the same name, the key will be replaced. It will still be in its first position, but with the last specified value.
+
+</p>
+</details>
+
+</li>
+
+---
+
+114. **What will be the output ?**
+
+```JS
+const obj = { 1: 'a', 2: 'b', 3: 'c' };
+const set = new Set([1, 2, 3, 4, 5]);
+
+obj.hasOwnProperty('1');
+obj.hasOwnProperty(1);
+set.has('1');
+set.has(1);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: true true false true
+
+All object keys (excluding Symbols) are strings under the hood, even if you don't type it yourself as a string. This is why obj.hasOwnProperty('1') also returns true.
+
+It doesn't work that way for a set. There is no '1' in our set: set.has('1') returns false. It has the numeric type 1, set.has(1) returns true.
+
+</p>
+</details>
+
+</li>
+
+---
+
+115. **What will be the output ?**
+
+```JS
+function checkAge(data) {
+  if (data === { age: 18 }) {
+    console.log('You are an adult!');
+  } else if (data == { age: 18 }) {
+    console.log('You are still an adult.');
+  } else {
+    console.log(`Hmm.. You don't have an age I guess`);
+  }
+}
+
+checkAge({ age: 18 });
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: Hmm.. You don't have an age I guess
+
+When testing equality, primitives are compared by their value, while objects are compared by their reference. JavaScript checks if the objects have a reference to the same location in memory.
+
+The two objects that we are comparing don't have that: the object we passed as a parameter refers to a different location in memory than the object we used in order to check equality.
+
+This is why both { age: 18 } === { age: 18 } and { age: 18 } == { age: 18 } return false.
+
+</p>
+</details>
+
+</li>
+
+---
+
+116. **What will be the output ?**
+
+```JS
+let number = 0;
+console.log(number++);
+console.log(++number);
+console.log(number);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 0 2 2
+
+The postfix unary operator ++:
+
+Returns the value (this returns 0)
+Increments the value (number is now 1)
+The prefix unary operator ++:
+
+Increments the value (number is now 2)
+Returns the value (this returns 2)
+This returns 0 2 2.
+
+</p>
+</details>
+
+</li>
+
+---
+
+117. **What will be the output ?**
+
+```JS
+const shape = {
+  radius: 10,
+  diameter() {
+    return this.radius * 2;
+  },
+  perimeter: () => 2 * Math.PI * this.radius,
+};
+
+console.log(shape.diameter());
+console.log(shape.perimeter());
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 20 and NaN
+
+Note that the value of diameter is a regular function, whereas the value of perimeter is an arrow function.
+
+With arrow functions, the this keyword refers to its current surrounding scope, unlike regular functions! This means that when we call perimeter, it doesn't refer to the shape object, but to its surrounding scope (window for example).
+
+Since there is no value radius in the scope of the arrow function, this.radius returns undefined which, when multiplied by 2 \* Math.PI, results in NaN.
+
+</p>
+</details>
+
+</li>
+
+---
