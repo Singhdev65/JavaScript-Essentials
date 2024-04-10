@@ -4115,3 +4115,172 @@ Since there is no value radius in the scope of the arrow function, this.radius r
 </li>
 
 ---
+
+118. **What will be the output ?**
+
+```JS
+var trees = ["xyz", "xxxx", "test", "ryan", "apple"];
+delete trees[3];
+console.log(trees.length);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 5
+
+The code above will output `5` as output. When we used `delete` operator for deleting an array element then, the array length is not affected by this. This holds even if you deleted all elements of an array using `delete` operator.
+So when delete operator removes an array element that deleted element is no longer present in the array. In place of value at deleted index undefined x 1 in chrome and undefined is placed at the index. If you do console.log(trees) output ["xyz", "xxxx", "test", undefined × 1, "apple"] in Chrome and in Firefox ["xyz", "xxxx", "test", undefined, "apple"].
+
+</p>
+</details>
+
+</li>
+
+---
+
+119. **What will be the output ?**
+
+```JS
+var bar = true;
+console.log(bar + 0);
+console.log(bar + "xyz");
+console.log(bar + true);
+console.log(bar + false);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 1, "truexyz", 2, 1
+
+Number + Number -> Addition
+Boolean + Number -> Addition
+Boolean + Boolean -> Addition
+Number + String -> Concatenation
+String + Boolean -> Concatenation
+String + String -> Concatenation
+
+</p>
+</details>
+
+</li>
+
+---
+
+120.  **What will be the output ?**
+
+```JS
+var salary = "1000$";
+
+(function () {
+  console.log("Original salary was " + salary);
+
+  var salary = "5000$";
+
+  console.log("My New Salary " + salary);
+})();
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: undefined, 5000$
+
+The code above will output: undefined, 5000$ because of hoisting. In the code presented above, you might be expecting salary to retain it values from outer scope until the point that salary was re-declared in the inner scope. But due to hoisting salary value was undefined instead. To understand it better have a look of the following code, here salary variable is hoisted and declared at the top in function scope. When we print its value using console.log the result is undefined. Afterwards the variable is redeclared and the new value "5000$" is assigned to it.
+
+</p>
+</details>
+
+</li>
+
+---
+
+121.  **What will be the output ?**
+
+```JS
+function User(name) {
+  this.name = name || "JsGeeks";
+}
+
+var person = new User("xyz")["location"] = "USA";
+console.log(person);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: USA
+
+The output of above code would be "USA". Here new User("xyz") creates a brand new object and created property location on that and USA has been assigned to object property location and that has been referenced by the person.
+
+</p>
+</details>
+
+</li>
+
+---
+
+122.  **What will be the output ?**
+
+```JS
+var strA = "hi there";
+var strB = strA;
+strB="bye there!";
+console.log (strA)
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 'hi there'
+
+The output will be 'hi there' because we're dealing with strings here. Strings are passed by value, that is, copied.
+
+</p>
+</details>
+
+</li>
+
+---
+
+123.  **What will be the output ?**
+
+```JS
+var objA = {prop1: 42};
+var objB = objA;
+objB.prop1 = 90;
+console.log(objA)
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: {prop1: 90}
+
+The output will be {prop1: 90} because we're dealing with objects here. Objects are passed by reference, that is, objA and objB point to the same object in memory.
+
+</p>
+</details>
+
+</li>
+
+---
