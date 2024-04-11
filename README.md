@@ -4284,3 +4284,202 @@ The output will be {prop1: 90} because we're dealing with objects here. Objects 
 </li>
 
 ---
+
+124.  **What will be the output ?**
+
+```JS
+(function(){
+	var numbers = [2,3,4,8,9,11,13,12,16];
+	var even = numbers.filter(function(element, index){
+		return element % 2 === 0;
+	});
+	console.log(even);
+
+	var containsDivisibleby3 = numbers.some(function(element, index){
+		return element % 3 === 0;
+	});
+
+	console.log(containsDivisibleby3);
+})();
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: [ 2, 4, 8, 12, 16 ] true
+
+</p>
+</details>
+
+</li>
+
+---
+
+125.  **What will be the output ?**
+
+```JS
+(function() {
+	var greet = 'Hello World';
+	var toGreet = [].filter.call(greet, function(element, index) {
+		return index > 5;
+	});
+	console.log(toGreet);
+}());
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: [ 'W', 'o', 'r', 'l', 'd' ]
+
+</p>
+</details>
+
+</li>
+
+---
+
+126.  **What will be the output ?**
+
+```JS
+(function greetNewCustomer() {
+	console.log('Hello ' + this.name);
+}.bind({
+	name: 'John'
+})());
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: Hello John
+
+</p>
+</details>
+
+</li>
+
+---
+
+127.  **What will be the output ?**
+
+```JS
+function getNumber(){
+	return (2,4,5);
+}
+
+var numb = getNumber();
+console.log(numb);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 5
+
+</p>
+</details>
+
+</li>
+
+---
+
+128.  **What will be the output ?**
+
+```JS
+function getNumber(){
+	return;
+}
+
+var numb = getNumber();
+console.log(numb);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: undefined
+
+</p>
+</details>
+
+</li>
+
+---
+
+129.  **What will be the output ?**
+
+```JS
+function mul(x){
+	return function(y){
+		return [x*y, function(z){
+			return x*y + z;
+		}];
+	}
+}
+
+console.log(mul(2)(3)[0]);
+console.log(mul(2)(3)[1](4));
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 6, 10
+
+</p>
+</details>
+
+</li>
+
+---
+
+130.  **What will be the output ?**
+
+```JS
+function mul(x) {
+	return function(y) {
+		return {
+			result: x * y,
+			sum: function(z) {
+				return x * y + z;
+			}
+		};
+	};
+}
+console.log(mul(2)(3).result);
+console.log(mul(2)(3).sum(4));
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 6,10
+
+</p>
+</details>
+
+</li>
+
+---
