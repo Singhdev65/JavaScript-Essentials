@@ -4483,3 +4483,193 @@ console.log(mul(2)(3).sum(4));
 </li>
 
 ---
+
+131.  **What will be the output ?**
+
+```JS
+function calculateSum() {
+  console.log(result);
+  var num1 = 5;
+  let num2 = 10;
+  const num3 = 15;
+  var result = num1 + num2 + num3;
+}
+
+calculateSum();
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: undefined
+
+In the code, the variable result is declared using the var keyword, but it is assigned a value after the console.log statement.
+
+When JavaScript executes the function calculateSum(), it hoists the variable declaration of result to the top of the function scope. However, since the assignment of the value num1 + num2 + num3 comes after the console.log statement, the variable is undefined at the point of the console.log.
+
+So, the code is effectively interpreted like this:
+
+function calculateSum() {
+var result; // Variable declaration is hoisted to the top
+
+console.log(result); // undefined
+
+var num1 = 5;
+let num2 = 10;
+const num3 = 15;
+result = num1 + num2 + num3; // Assignment is performed here
+}
+
+calculateSum();
+Since the variable result is hoisted, it exists in the function scope but does not have any assigned value until after the console.log statement. Therefore, when console.log(result) is executed, the variable result exists but is undefined.
+
+</p>
+</details>
+
+</li>
+
+---
+
+132.  **What will be the output ?**
+
+```JS
+let x = 10;
+
+function updateX() {
+  if (true) {
+    let x = 20;
+    console.log(x);
+  }
+  console.log(x);
+}
+
+updateX();
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 20, 10
+
+In this code, the variable x is declared and assigned a value of 10 outside the updateX function.
+
+Inside the function, a new block is created using an if statement. Within that block, a new variable x is declared and assigned a value of 20 using let. This creates a separate scope for the inner x, which is only accessible within the if block.
+
+When the console.log statements are executed, the first one inside the if block will output 20, as it refers to the inner x variable. The second console.log statement outside the if block will output 10, as it refers to the outer x variable.
+
+Therefore, the output will be 20, 10.
+
+</p>
+</details>
+
+</li>
+
+---
+
+133.  **What will be the output ?**
+
+```JS
+let numbers = [1, 2, 3, 4, 5];
+numbers = numbers.map((number) => number * 2);
+console.log(numbers.reduce((total, num) => total + num));
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 30
+
+Array Creation: The code starts by creating an array named numbers containing the values [1, 2, 3, 4, 5].
+
+Array Mapping: The map() method is used to create a new array by applying a function to each element of the original array. In this case, the function number => number \* 2 doubles each number in the array. The new array becomes [2, 4, 6, 8, 10].
+
+Array Reduction: The reduce() method is used to reduce the array to a single value by applying a function against an accumulator and each element in the array (from left to right). The function (total, num) => total + num adds each number in the array to the total, starting with an initial total of 0.
+
+Output: The final console.log() statement outputs the result of the reduce() operation, which is 30 (the sum of all the doubled numbers in the array).
+
+</p>
+</details>
+
+</li>
+
+---
+
+134.  **What will be the output ?**
+
+```JS
+let a = { x: 1 };
+let b = { x: 2 };
+let c = { x: 3 };
+let d = { x: 4 };
+let e = { x: 5 };
+let arr = [a, b, c, d, e];
+
+arr.forEach((obj) => (obj.x = obj.x * 2));
+
+console.log(a.x, b.x, c.x, d.x, e.x);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 2 4 6 8 10
+
+The code is using the forEach method to iterate over an array of objects, and it is modifying the x property of each object by multiplying it by 2.
+
+It's updating the original objects with x\*2 values.
+
+So, the output of the code is 2 4 6 8 10.
+
+</p>
+</details>
+
+</li>
+
+---
+
+135.  **What will be the output ?**
+
+```JS
+const obj = {
+  a: "foo",
+  b: function () {
+    console.log(this.a);
+  },
+};
+
+const c = obj.b;
+
+obj.b();
+c();
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: foo, undefined
+
+When the method obj.b is called directly on obj, the output will be "foo". This is because this refers to the object that the method is called on, and obj.a is equal to "foo".
+
+When the variable c is assigned the value of obj.b, it is a reference to the function itself and not the object obj. When c is called, it is not called on an object, so this will not refer to obj and the value of this.a is undefined. As a result, the output when calling c() will be undefined.
+
+</p>
+</details>
+
+</li>
+
+---
