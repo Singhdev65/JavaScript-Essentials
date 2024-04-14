@@ -4673,3 +4673,193 @@ When the variable c is assigned the value of obj.b, it is a reference to the fun
 </li>
 
 ---
+
+136.  **What will be the output ?**
+
+```JS
+(function(a){
+ return (function(){
+   console.log(a);
+   a = 6;
+ })()
+})(21);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 21
+
+The code defines an immediately invoked function expression (IIFE) that takes a single parameter a and immediately invokes it with the argument 21.
+
+Inside the IIFE, there's another function expression that doesn't have a name, creating a closure over the outer function's scope.
+
+Inside the inner function, console.log(a) is called. At this point, a refers to the parameter passed to the outer function, which is 21. So, it logs 21 to the console.
+
+Then, a is reassigned the value 6, but this change doesn't affect the value of a that was already logged to the console, because it's in a separate scope.
+
+</p>
+</details>
+
+</li>
+
+---
+
+137.  **What will be the output ?**
+
+```JS
+function solve(arr, rotations){
+ if(rotations == 0) return arr;
+ for(let i = 0; i < rotations; i++){
+   let element = arr.pop();
+   arr.unshift(element);
+ }
+ return arr;
+}
+ solve([44, 1, 22, 111], 5);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: [111, 44, 1, 22]
+
+If rotations is 0, the function returns the original array arr without any modifications.
+
+If rotations is not 0, the function enters a loop that iterates rotations times.
+
+Inside the loop, it takes the last element of the array using arr.pop() and stores it in the variable element.
+
+Then, it adds this element to the beginning of the array using arr.unshift(element), effectively rotating the array to the left by one position.
+
+After completing all the rotations, the function returns the modified array.
+
+</p>
+</details>
+
+</li>
+
+---
+
+138.  **What will be the output ?**
+
+```JS
+var a = 1;  
+var b = 0;  
+while (a <= 3) {  
+   a++;  
+   b += a * 2;  
+   console.log(b);
+}
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 4, 10, 18
+
+a = 1, b = 0, the condition a <= 3 is true, so the loop begins.
+Inside the loop:
+a is incremented by 1, becoming 2.
+b is incremented by a * 2, which is 2 * 2 = 4. So, b becomes 4.
+b (which is currently 4) is printed.
+Now, a is 2, and b is 4. The loop condition is still true (2 <= 3).
+Inside the loop:
+a is incremented by 1 again, becoming 3.
+b is incremented by a * 2, which is 3 * 2 = 6. So, b becomes 4 + 6 = 10.
+b (which is currently 10) is printed.
+Now, a is 3, and b is 10. The loop condition is still true (3 <= 3).
+Inside the loop:
+a is incremented by 1 again, becoming 4.
+b is incremented by a * 2, which is 4 * 2 = 8. So, b becomes 10 + 8 = 18.
+b (which is currently 18) is printed.
+Now, a is 4, and b is 18. The loop condition is false (4 > 3), so the loop ends.
+
+</p>
+</details>
+
+</li>
+
+---
+
+139.  **What will be the output ?**
+
+```JS
+const set = new Set();
+set.add(5);
+set.add('Hello');
+set.add({ name: 'Tutu' });
+for (let item of set) {
+ console.log(item + 6);
+}
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: 11 Hello6 [Object, Object]6
+
+const set = new Set();: This line initializes a new Set called set.
+
+set.add(5);: Adds the number 5 to the set.
+
+set.add('Hello');: Adds the string 'Hello' to the set.
+
+set.add({ name: 'Tutu' });: Adds an object { name: 'Tutu' } to the set.
+
+for (let item of set) { console.log(item + 6); }: This loop iterates over each item in the set and prints out the result of adding 6 to each item.
+
+Now, let's see what happens in the loop:
+
+For the first iteration: item will be 5. 5 + 6 equals 11.
+For the second iteration: item will be 'Hello'. Adding a number to a string in JavaScript results in concatenation. So, 'Hello' + 6 equals 'Hello6'.
+For the third iteration: item will be { name: 'Tutu' }. Adding a number to an object will result in [Object, Object]6
+
+</p>
+</details>
+
+</li>
+
+---
+
+140.    **What will be the output ?**
+
+```JS
+const example = ({ a, b, c }) => {
+ console.log(a, b, c);
+};
+example(0, 1, 2);
+```
+
+<br/>
+
+<details>
+<summary><b>Answer</b></summary>
+<p>
+
+#### ➼➼➼: undefined undefined undefined
+
+const example = ({ a, b, c }) => { console.log(a, b, c); };: This line defines a function called example using arrow function syntax. The function accepts a single parameter which is expected to be an object with properties a, b, and c. Inside the function body, it logs the values of a, b, and c to the console.
+
+example(0, 1, 2);: This line calls the example function with three arguments: 0, 1, and 2.
+
+Now, when the example function is called with 0, 1, and 2 as arguments, it will try to destructure an object from the first argument, but 0, 1, and 2 are not objects, so they cannot be destructured.
+
+</p>
+</details>
+
+</li>
+
+---
